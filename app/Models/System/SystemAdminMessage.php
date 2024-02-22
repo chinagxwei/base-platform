@@ -54,5 +54,12 @@ class SystemAdminMessage extends Model
     function searchBuild($param = [], $with = [])
     {
         // TODO: Implement searchBuild() method.
+        // TODO: Implement searchBuild() method.
+        $this->fill($param);
+        $build = $this;
+        if (!empty($this->admin_id)) {
+            $build = $build->where('admin_id', $this->admin_id);
+        }
+        return $build->with($with)->orderBy('id', 'desc');
     }
 }

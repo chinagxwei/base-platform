@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->comment('邮箱验证时间')->nullable();
             $table->string('password',128)->comment('密码');
             $table->rememberToken();
+            $table->tinyInteger('role_type')->unsigned()->nullable()->comment('用户类型');
             $table->integer('login_at')->unsigned()->nullable()->comment('最后登录时间');
             $table->integer('created_at')->unsigned()->nullable();
             $table->integer('updated_at')->unsigned()->nullable();

@@ -19,7 +19,7 @@ use Illuminate\Support\Collection;
  * @property int created_by
  * @property Carbon created_at
  * @property User user
- * @property SystemAdminNavigation[]|Collection navigations
+ * @property SystemNavigation[]|Collection navigations
  */
 class SystemAdminRole extends Model
 {
@@ -56,7 +56,7 @@ class SystemAdminRole extends Model
     public function navigations()
     {
         return $this->belongsToMany(
-            SystemAdminNavigation::class,
+            SystemNavigation::class,
             'admin_role_menus',
             'role_id',
             'navigation_id'

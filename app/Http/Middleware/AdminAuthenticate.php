@@ -6,6 +6,8 @@ use App\Models\User;
 use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 
 //
 class AdminAuthenticate extends Middleware
@@ -18,6 +20,18 @@ class AdminAuthenticate extends Middleware
      */
     public function handle($request, Closure $next, ...$guards)
     {
+        $route = Route::current();
+
+        $name = Route::currentRouteName();
+
+        $action = Route::currentRouteAction();
+
+        Log::info($route);
+
+        Log::info($name);
+
+        Log::info($action);
+
         if (!$this->auth->guard('api')->check()) {
             return response()->json(['code' => 401, 'message' => '请先登录']);
         }

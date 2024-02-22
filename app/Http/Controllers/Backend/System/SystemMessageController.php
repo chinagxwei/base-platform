@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Backend\System;
 
 use App\Http\Controllers\PlatformController;
 use App\Models\System\SystemAdminMessage;
-use App\Models\System\SystemMessage;
-use App\Service\System\SystemMessageService;
 use Illuminate\Http\Request;
 
 class SystemMessageController extends PlatformController

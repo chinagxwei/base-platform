@@ -59,7 +59,7 @@ class SystemImage extends BaseDataModel
         if (!empty($this->title)) {
             $build = $build->where('title', 'like', "%{$this->title}%");
         }
-        if (!empty($this->content)) {
+        if (!empty($this->description)) {
             $build = $build->where('description', 'like', "%{$this->description}%");
         }
         return $build->with($with)->orderBy('id', 'desc');
