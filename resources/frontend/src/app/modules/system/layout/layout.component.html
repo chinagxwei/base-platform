@@ -1,0 +1,67 @@
+<nz-layout>
+  <nz-sider nzTheme="dark" nzCollapsible [(nzCollapsed)]="isCollapsed">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <ng-template ngFor let-item [ngForOf]="menuItems">
+        <ng-container *ngIf="item.children?.length === 0; then menu;else sub_menu"></ng-container>
+        <ng-template #menu >
+          <li nz-menu-item>
+            <a routerLink="{{item.navigation_link}}" routerLinkActive="active">
+              <span nz-icon nzType="menu"></span>
+              <span class="nav-item">{{item.navigation_name}}</span>
+            </a>
+          </li>
+        </ng-template>
+        <ng-template #sub_menu>
+          <li nz-submenu [nzTitle]="item.navigation_name" nzIcon="menu">
+            <ul>
+              <ng-template ngFor let-item2 [ngForOf]="item.children">
+                <li style="padding-left: 36px!important;" nz-menu-item *ngIf="item2.menu_show === 1">
+                  <a routerLink="{{item2.navigation_link}}" routerLinkActive="active">
+                    <i nz-icon nzType="{{item2.icon}}" nzTheme="outline"></i>
+                    <span class="nav-item">{{item2.navigation_name}}</span>
+                  </a>
+                </li>
+              </ng-template>
+            </ul>
+          </li>
+        </ng-template>
+      </ng-template>
+      <!--      <li nz-submenu [nzTitle]="item.navigation_name" nzIcon="menu" *ngFor="let item of menuItems; index as i">-->
+      <!--        <ng-container *ngIf="item.children?.length === 0; then menu;else sub_menu"></ng-container>-->
+      <!--        <ul>-->
+      <!--          <ng-template #menu >-->
+      <!--            <li nz-menu-item>-->
+      <!--              <span nz-icon nzType="pie-chart"></span>-->
+      <!--              <span>Option 1</span>-->
+      <!--            </li>-->
+      <!--          </ng-template>-->
+      <!--          <ng-template #sub_menu ngFor let-item2 [ngForOf]="item.children">-->
+      <!--            <li style="padding-left: 36px!important;" nz-menu-item *ngIf="item2.menu_show === 1">-->
+      <!--              <a routerLink="{{item2.navigation_link}}" routerLinkActive="active">-->
+      <!--                <i nz-icon nzType="{{item2.icon}}" nzTheme="outline"></i>-->
+      <!--                <span class="nav-item">{{item2.navigation_name}}</span>-->
+      <!--              </a>-->
+      <!--            </li>-->
+      <!--          </ng-template>-->
+      <!--        </ul>-->
+      <!--      </li>-->
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <ul style="display: flex;justify-content: flex-end;" nz-menu nzTheme="dark" nzMode="horizontal"
+          class="header-menu">
+        <li [className]="'header-nav-item'" (click)="onResetPassword()">修改密码</li>
+        <li [className]="'header-nav-item'" (click)="onLogout()">
+          <i nz-icon nzType="logout" nzTheme="outline"></i>
+          <span class="nav-item">（{{username}}）注销登录</span>
+        </li>
+      </ul>
+    </nz-header>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+  </nz-layout>
+</nz-layout>

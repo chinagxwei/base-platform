@@ -24,7 +24,7 @@ use Illuminate\Support\Collection;
  * @property int created_by
  * @property Carbon created_at
  * @property User user
- * @property SystemAdminRole role
+ * @property SystemRole role
  */
 class SystemAdmin extends Model
 {
@@ -61,7 +61,7 @@ class SystemAdmin extends Model
      */
     public function role()
     {
-        return $this->hasOne(SystemAdminRole::class, 'id', 'role_id');
+        return $this->hasOne(SystemRole::class, 'id', 'role_id');
     }
 
     function searchBuild($param = [], $with = [])

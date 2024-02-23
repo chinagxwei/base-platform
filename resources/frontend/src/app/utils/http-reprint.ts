@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthService} from "../services/auth.service";
+import {AuthService} from "../services/system/auth.service";
 import {ServerResponse} from "../models/server-response";
 import {tap} from "rxjs";
 
@@ -17,7 +17,7 @@ export class HttpReprint {
   }
 
   public setHeaders(name: string, value: string | string[]){
-    this.httpOptions.headers.set(name, value);
+    this.httpOptions.headers = this.httpOptions.headers.set(name, value);
     return this;
   }
 
@@ -27,7 +27,7 @@ export class HttpReprint {
   }
 
   public get<T>(url: string) {
-    return this.http
+    return this.authorization().http
       .get<ServerResponse<T>>(url, this.httpOptions)
       .pipe(tap(value => {
 
@@ -35,7 +35,7 @@ export class HttpReprint {
   }
 
   public post<T>(url: string, body?: any) {
-    return this.http
+    return this.authorization().http
       .post<ServerResponse<T>>(url, body, this.httpOptions)
       .pipe(tap(value => {
 

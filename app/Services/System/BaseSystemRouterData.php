@@ -17,7 +17,8 @@ class BaseSystemRouterData
             self::getNavigation($created_by, $time),
             self::getRole($created_by, $time),
             self::getManager($created_by, $time),
-            self::getActionLog($created_by, $time)
+            self::getActionLog($created_by, $time),
+            self::getRouters($created_by, $time)
         );
     }
 
@@ -307,28 +308,28 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '管理员列表',
-                'router' => '/api/v1/role/index',
+                'router' => '/api/v1/manager/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '管理员保存',
-                'router' => '/api/v1/role/save',
+                'router' => '/api/v1/manager/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '管理员详情',
-                'router' => '/api/v1/role/view',
+                'router' => '/api/v1/manager/view',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除管理员',
-                'router' => '/api/v1/role/delete',
+                'router' => '/api/v1/manager/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -349,6 +350,39 @@ class BaseSystemRouterData
             [
                 'router_name' => '删除管理员日志',
                 'router' => '/api/v1/action-log/delete',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ]
+        ];
+    }
+
+    private static function getRouters($created_by, $time){
+        return [
+            [
+                'router_name' => '管理路由列表',
+                'router' => '/api/v1/router/index',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'router_name' => '保存管理路由',
+                'router' => '/api/v1/router/save',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'router_name' => '删除管理路由',
+                'router' => '/api/v1/router/delete',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'router_name' => '注册路由',
+                'router' => '/api/v1/router/registered-route',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time

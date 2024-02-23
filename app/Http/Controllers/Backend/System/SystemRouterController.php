@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\System;
 use App\Http\Controllers\PlatformController;
 use App\Models\System\SystemRouter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class SystemRouterController extends PlatformController
 {
@@ -27,7 +28,7 @@ class SystemRouterController extends PlatformController
     public function save(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $id = $request->input('id',0);
+            $id = $request->input('id', 0);
             try {
                 $this->validate($request, [
                     'router_name' => 'required|min:3',
@@ -69,4 +70,27 @@ class SystemRouterController extends PlatformController
         return self::failJsonResponse();
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function registeredRoute()
+    {
+
+        $user = auth('api')->user();
+
+        if ($user && $user->isSuperManager()) {
+
+            $routes = Route::getRoutes();
+
+            foreach ($routes as $k => $value) {
+                $route_path[$k]['uri'] = $value->uri;
+                $methods = join('|', $value->methods);
+                $route_path[$k]['method'] = ($methods == 'GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS' ? 'ANY' : $methods);
+            }
+
+            return self::successJsonResponse($route_path);
+        }
+
+        return self::failJsonResponse('权限不足');
+    }
 }

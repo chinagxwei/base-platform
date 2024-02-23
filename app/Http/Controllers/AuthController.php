@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member\Member;
+use App\Models\System\SystemAdmin;
+use App\Models\System\SystemNavigation;
+use App\Models\System\SystemRouter;
 use App\Models\User;
 
 use App\Services\User\LoginService;
@@ -174,11 +177,13 @@ class AuthController extends PlatformController
     {
         /** @var User $user */
         $user = auth('api')->user();
-        if ($admin = $user->admin) {
-            $admin->role->navigations;
-            return self::successJsonResponse($admin);
-        }
 
+        if ($user && ($user->isSuperManager() || $user->isManager() || $user->isEnterpriseManager())) {
+            $navigation_str = Cache::get(SystemNavigation::USER_NAVIGATION_KEY . "_{$user->id}");
+            $info = $user->admin->toArray();
+            $info['navigations'] = json_decode($navigation_str) ?? [];
+            return self::successJsonResponse($info);
+        }
         return self::failJsonResponse('Not Found');
     }
 
@@ -224,17 +229,27 @@ class AuthController extends PlatformController
             'expires_in' => time() + auth('api')->factory()->getTTL() * 60
         ];
 
-//        /** @var Admin $admin */
-//        if ($admin = $user->admin) {
-//            $admin->role->navigations;
-//            $result_array['userinfo'] = $admin;
-//            $result_array['im_token'] = ImService::setAdminSession($user->id);
-//        }
+        /** @var SystemAdmin $admin */
+        if ($admin = $user->admin) {
+            if ($user->isSuperManager()) {
+                $navigations = SystemNavigation::getParentAll([SystemNavigation::DEFAULT_WITH_CHILDREN_FIELD]);
+            } else {
+                $navigations = $admin->role->navigations;
+            }
+            Cache::put(SystemNavigation::USER_NAVIGATION_KEY . "_{$user->id}", json_encode($navigations->toArray()));
+        }
 //
 //        /** @var Member $member */
 //        if ($member = $user->member) {
 //            $result_array['im_token'] = ImService::setMemberSession($member->id, $user->id);
 //        }
+        if (!$user->isSuperManager()) {
+            $routers = $admin->role->routers;
+            $routers_array = $routers->map(function ($v) {
+                return $v->router;
+            });
+            Cache::put(SystemRouter::USER_ROUTER_KEY . "_{$user->id}", json_encode($routers_array));
+        }
 
         return self::successJsonResponse($result_array);
     }

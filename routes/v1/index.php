@@ -13,6 +13,6 @@ Route::group([
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
 //    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('info', [AuthController::class, 'info']);
+    Route::get('info', [AuthController::class, 'info']);
 
 });

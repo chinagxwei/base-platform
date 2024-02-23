@@ -11,8 +11,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AuthModule} from "./modules/auth/auth.module";
-
+import {SystemModule} from "./modules/system/system.module";
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { IconDefinition } from '@ant-design/icons-angular';
+import * as AllIcons from '@ant-design/icons-angular/icons';
 registerLocaleData(zh);
+
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
 @NgModule({
   declarations: [
@@ -24,7 +32,10 @@ registerLocaleData(zh);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NzIconModule,
     AuthModule,
+    SystemModule,
+    NzIconModule.forRoot(icons)
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN }

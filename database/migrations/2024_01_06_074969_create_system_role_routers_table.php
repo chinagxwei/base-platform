@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('system_admin_role_navigations', function (Blueprint $table) {
+        Schema::create('system_role_routers', function (Blueprint $table) {
             $table->integer('role_id')->unsigned();
-            $table->integer('navigation_id')->unsigned();
-            $table->primary(['role_id', 'navigation_id']);
-            $table->comment('管理员角色菜单表');
+            $table->integer('router_id')->unsigned();
+            $table->primary(['role_id', 'router_id']);
+            $table->comment('角色路由单表');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('system_admin_role_menus');
+        Schema::dropIfExists('system_role_routers');
     }
 };

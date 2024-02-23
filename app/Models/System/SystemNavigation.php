@@ -30,6 +30,10 @@ class SystemNavigation extends Model
 {
     use SoftDeletes, CreatedRelation, UpdatedRelation, SystemAdminNavigationBuild, SearchData;
 
+    public const USER_NAVIGATION_KEY = "user_system_navigations";
+
+    public const DEFAULT_WITH_CHILDREN_FIELD = 'children:id,parent_id,navigation_name,navigation_link,menu_show,icon,navigation_sort';
+
     protected $table = 'system_navigations';
 
     /**
@@ -48,7 +52,11 @@ class SystemNavigation extends Model
 
     protected $fillable = [
         'parent_id', 'navigation_name', 'navigation_link',
-        'navigation_sort','menu_show', 'icon', 'created_by', 'updated_by'
+        'navigation_sort', 'menu_show', 'icon', 'created_by', 'updated_by'
+    ];
+
+    protected $hidden = [
+        'deleted_at', 'updated_at'
     ];
 
     /**
@@ -70,16 +78,16 @@ class SystemNavigation extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|static[]
      * */
-    public static function getParentAll()
+    public static function getParentAll($with = [])
     {
-        return self::query()->where(function ($query) {
-            $query->orWhereNull('parent_id')->orWhere('parent_id', 0);
-        })->get();
+        return self::query()
+            ->select([
+                'id', 'parent_id', 'navigation_name',
+                'navigation_link', 'menu_show', 'icon', 'navigation_sort'
+            ])->where(function ($query) {
+                $query->orWhereNull('parent_id')->orWhere('parent_id', 0);
+            })->with($with)->orderBy('navigation_sort')->get();
     }
-
-    protected $hidden = [
-        'deleted_at', 'updated_at'
-    ];
 
     function searchBuild($param = [], $with = [])
     {
