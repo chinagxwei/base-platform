@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {User} from "../models/user";
-import {HttpReprint} from "../utils/http-reprint";
-import {USER_LOGIN, USER_LOGOUT} from "../api/auth.api";
+import {User} from "../../models/user";
+import {HttpReprint} from "../../utils/http-reprint";
+import {USER_LOGIN, USER_LOGOUT} from "../../api/auth.api";
 import {map} from "rxjs";
 import moment from 'moment';
-import {ResponseCode} from "../utils/response-code";
+import {ResponseCode} from "../../utils/response-code";
 import {NavigationExtras, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {ServerResponse} from "../models/server-response";
+import {ServerResponse} from "../../models/server-response";
 
 @Injectable({
   providedIn: 'root'

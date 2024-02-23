@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\System\RouterCheckService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +15,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind(RouterCheckService::class, function () {
+            return new RouterCheckService();
+        });
     }
 
     /**

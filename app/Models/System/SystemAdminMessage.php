@@ -60,6 +60,15 @@ class SystemAdminMessage extends Model
         if (!empty($this->admin_id)) {
             $build = $build->where('admin_id', $this->admin_id);
         }
+        if (!empty($this->title)) {
+            $build = $build->where('title', 'like', "%{$this->title}%");
+        }
+        if (!empty($this->content)) {
+            $build = $build->where('content', 'like', "%{$this->content}%");
+        }
+        if (isset($this->weight)) {
+            $build = $build->where('weight', $this->weight);
+        }
         return $build->with($with)->orderBy('id', 'desc');
     }
 }

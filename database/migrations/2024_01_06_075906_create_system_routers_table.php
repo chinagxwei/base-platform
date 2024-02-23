@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('system_routers', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('router_name', 64)->comment('导航名称');
-            $table->string('router', 128)->nullable()->comment('路由');
+            $table->string('router', 128)->nullable()->unique()->comment('路由');
             $table->integer('created_at')->unsigned()->nullable();
             $table->integer('updated_at')->unsigned()->nullable();
             $table->integer('created_by')->index()->unsigned()->nullable()->comment('用户ID');

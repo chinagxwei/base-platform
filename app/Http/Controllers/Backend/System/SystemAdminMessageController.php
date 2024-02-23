@@ -24,7 +24,7 @@ class SystemAdminMessageController extends PlatformController
      * @return \Illuminate\Http\JsonResponse
      */
     public function view(Request $request){
-        if ($request->isMethod('POST') && $id = $request->input('id')) {
+        if ($id = $request->input('id')) {
             if ($model = SystemAdminMessage::findOneByID($id)) {
                 return self::successJsonResponse($model);
             }

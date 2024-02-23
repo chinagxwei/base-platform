@@ -20,6 +20,7 @@ use Illuminate\Support\Collection;
  * @property Carbon created_at
  * @property User user
  * @property SystemNavigation[]|Collection navigations
+ * @property SystemRouter[]|Collection routers
  */
 class SystemRole extends Model
 {
@@ -60,7 +61,20 @@ class SystemRole extends Model
             'system_role_navigations',
             'role_id',
             'navigation_id'
-        )->with(['children'])->orderBy('navigation_sort');
+        )->with([SystemNavigation::DEFAULT_WITH_CHILDREN_FIELD])->orderBy('navigation_sort');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function routers()
+    {
+        return $this->belongsToMany(
+            SystemRouter::class,
+            'system_role_routers',
+            'role_id',
+            'router_id'
+        )->select(['id', 'router']);
     }
 
     function searchBuild($param = [], $with = [])

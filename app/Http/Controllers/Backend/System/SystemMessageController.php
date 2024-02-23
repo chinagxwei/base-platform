@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\System;
 
 use App\Http\Controllers\PlatformController;
-use App\Models\System\SystemAdminMessage;
+use App\Models\System\SystemMessage;
 use Illuminate\Http\Request;
 
 class SystemMessageController extends PlatformController
@@ -15,7 +15,7 @@ class SystemMessageController extends PlatformController
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request){
-        $res = (new SystemAdminMessage())->searchBuild($request->all())->paginate();
+        $res = (new SystemMessage())->searchBuild($request->all())->paginate();
         return self::successJsonResponse($res);
     }
 
@@ -24,8 +24,8 @@ class SystemMessageController extends PlatformController
      * @return \Illuminate\Http\JsonResponse
      */
     public function view(Request $request){
-        if ($request->isMethod('POST') && $id = $request->input('id')) {
-            if ($model = SystemAdminMessage::findOneByID($id)) {
+        if ($id = $request->input('id')) {
+            if ($model = SystemMessage::findOneByID($id)) {
                 return self::successJsonResponse($model);
             }
         }
@@ -48,9 +48,9 @@ class SystemMessageController extends PlatformController
                 ]);
 
                 if ($id > 0) {
-                    $model = SystemAdminMessage::findOneByID($id);
+                    $model = SystemMessage::findOneByID($id);
                 } else {
-                    $model = new SystemAdminMessage();
+                    $model = new SystemMessage();
                 }
 
                 if ($model->fill($request->all())->save()) {
@@ -70,7 +70,7 @@ class SystemMessageController extends PlatformController
      */
     public function delete(Request $request){
         if ($id = $request->input('id')) {
-            if ($model = SystemAdminMessage::findOneByID($id)) {
+            if ($model = SystemMessage::findOneByID($id)) {
                 $this->deleteEvent($model->title);
                 $model->delete();
                 return self::successJsonResponse();
@@ -86,7 +86,7 @@ class SystemMessageController extends PlatformController
      */
     public function send(Request $request){
         if ($id = $request->input('id')) {
-            SystemMessageService::send($id);
+//            SystemMessageService::send($id);
             return self::successJsonResponse();
         }
 

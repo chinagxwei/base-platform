@@ -162,7 +162,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function register($param, $role_type)
     {
-        $param['email'] = "{$param['username']}@hcplatform.com";
+        $param['email'] = "{$param['username']}@platform.com";
         $param['password'] = bcrypt($param['password']);
         $param['user_type'] = $role_type;
         return $this->fill($param)->save();

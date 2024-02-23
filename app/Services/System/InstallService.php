@@ -3,8 +3,8 @@
 namespace App\Services\System;
 
 use App\Models\System\SystemAdmin;
-use App\Models\System\SystemAdminRole;
 use App\Models\System\SystemNavigation;
+use App\Models\System\SystemRole;
 use App\Models\System\SystemRouter;
 use Illuminate\Support\Facades\DB;
 
@@ -51,7 +51,7 @@ class InstallService
 
     private function addRole()
     {
-        if ($role = SystemAdminRole::generate("管理员", $this->admin->created_by)) {
+        if ($role = SystemRole::generate("管理员", $this->admin->created_by)) {
             $ids = SystemNavigation::getParentAll()->map(function ($v) {
                 return $v->id;
             });

@@ -3,20 +3,19 @@
 namespace App\Http\Controllers\Backend\System;
 
 use App\Http\Controllers\PlatformController;
-use App\Models\System\SystemAdminRole;
+use App\Models\System\SystemAgreement;
 use Illuminate\Http\Request;
 
-class SystemAdminRoleController extends PlatformController
+class SystemAgreementController extends PlatformController
 {
-    protected $controller_event_text = "管理员角色";
+    protected $controller_event_text = "系统协议";
 
     /**
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
-    {
-        $res = (new SystemAdminRole())->searchBuild($request->all())->paginate();
+    public function index(Request $request){
+        $res = (new SystemAgreement())->searchBuild($request->all())->paginate();
         return self::successJsonResponse($res);
     }
 
@@ -24,10 +23,9 @@ class SystemAdminRoleController extends PlatformController
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function view(Request $request)
-    {
-        if ($id = $request->input('id')) {
-            if ($model = SystemAdminRole::findOneByID($id)) {
+    public function view(Request $request){
+        if ($request->isMethod('POST') && $id = $request->input('id')) {
+            if ($model = SystemAgreement::findOneByID($id)) {
                 return self::successJsonResponse($model);
             }
         }
@@ -39,24 +37,24 @@ class SystemAdminRoleController extends PlatformController
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(Request $request)
-    {
+    public function save(Request $request){
         if ($request->isMethod('POST')) {
             $id = $request->input('id');
 
             try {
                 $this->validate($request, [
-                    'role_name' => 'required|min:5',
+                    'title' => 'required|min:1',
+                    'content' => 'required|min:1',
                 ]);
 
                 if ($id > 0) {
-                    $model = SystemAdminRole::findOneByID($id);
+                    $model = SystemAgreement::findOneByID($id);
                 } else {
-                    $model = new SystemAdminRole();
+                    $model = new SystemAgreement();
                 }
 
                 if ($model->fill($request->all())->save()) {
-                    $this->saveEvent($model->role_name);
+                    $this->saveEvent($model->title);
                     return self::successJsonResponse();
                 }
             } catch (\Exception $e) {
@@ -70,11 +68,10 @@ class SystemAdminRoleController extends PlatformController
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(Request $request)
-    {
+    public function delete(Request $request){
         if ($id = $request->input('id')) {
-            if ($model = SystemAdminRole::findOneByID($id)) {
-                $this->deleteEvent($model->role_name);
+            if ($model = SystemAgreement::findOneByID($id)) {
+                $this->deleteEvent($model->title);
                 $model->delete();
                 return self::successJsonResponse();
             }

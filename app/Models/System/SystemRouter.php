@@ -23,6 +23,8 @@ class SystemRouter extends Model
 {
     use HasFactory, SoftDeletes, CreatedRelation, UpdatedRelation, SearchData;
 
+    public const USER_ROUTER_KEY = "user_system_routers";
+
     protected $table = 'system_routers';
 
     /**
@@ -47,6 +49,13 @@ class SystemRouter extends Model
     protected $hidden = [
         'deleted_at', 'updated_at'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function getAll(){
+        return self::query()->select(['router'])->get();
+    }
 
     function searchBuild($param = [], $with = [])
     {

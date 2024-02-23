@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\User;
+use App\Services\System\RouterCheckService;
 use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\JsonResponse;
@@ -25,23 +26,41 @@ class AdminAuthenticate extends Middleware
             return response()->json(['code' => 401, 'message' => '请先登录']);
         }
 
-        /** @var User $user */
-        if ($user = auth('api')->user()){
-            // 检测是否是管理员
-            if (!$user->isManager()&& !$user->isSuperManager()){
-                return response()->json(['code' => 403, 'message' => '没有访问内容的权限']);
-            }
-        }
-
-        $route = Route::current();
-
-        $action = $route->getActionMethod();
-
-        $path = $route->getPrefix() . "/{$action}";
+        $path = "/" . $request->path();
 
         Log::info($path);
 
-        Log::info(explode('/', $path));
+        /** @var User $user */
+        if ($user = auth('api')->user()) {
+            // 检测是否是管理员
+            if ($user->isMember()) {
+                return response()->json(['code' => 403, 'message' => '没有访问内容的权限']);
+            }
+
+            if ($user->isSuperManager()) {
+                return $next($request);
+            }
+        }
+
+
+//        $route = Route::current();
+//
+//        $action = $route->getActionMethod();
+//
+//        $path = "/" . $route->getPrefix() . "/{$action}";
+//
+//        Log::info($path);
+//
+//        Log::info(explode('/', $path));
+//
+//        /** @var RouterCheckService $service */
+//        $service = app(RouterCheckService::class);
+//
+//        $res = $service->setAllowedRoutes([
+//            '/api/v1/auth/info2',
+//        ])->can($path);
+//
+//        Log::info("type:" . ($res ? '1' : '0'));
 
         return $next($request);
     }

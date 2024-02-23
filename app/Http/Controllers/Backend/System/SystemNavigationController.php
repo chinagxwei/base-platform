@@ -27,7 +27,7 @@ class SystemNavigationController extends PlatformController
     public function save(Request $request)
     {
         if ($request->isMethod('POST')) {
-            $id = $request->input('id',0);
+            $id = $request->input('id', 0);
             try {
                 $this->validate($request, [
                     'navigation_name' => 'required|min:3',
@@ -83,6 +83,32 @@ class SystemNavigationController extends PlatformController
             }
             $this->generateEvent("修改导航排序", "修改导航排序");
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getMenuByParent(Request $request)
+    {
+        $param = $request->all();
+        if ($param['parent_id']) {
+            $menus = SystemNavigation::findOneByParent($param['parent_id'], [SystemNavigation::DEFAULT_WITH_CHILDREN_FIELD]);
+            return self::successJsonResponse($menus);
+        }
+
+        return self::failJsonResponse();
+    }
+
+    public function registeredMenu()
+    {
+        $menus = SystemNavigation::query()
+            ->select(['id', 'parent_id', 'navigation_name', 'navigation_link', 'menu_show', 'icon', 'navigation_sort'])
+            ->whereNull('parent_id')
+            ->with([SystemNavigation::DEFAULT_WITH_CHILDREN_FIELD])
+            ->get();
+
+        return self::successJsonResponse($menus);
     }
 
     /**

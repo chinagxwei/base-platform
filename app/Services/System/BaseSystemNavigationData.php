@@ -230,6 +230,17 @@ class BaseSystemNavigationData
                 'created_at' => $time,
                 'updated_at' => $time
             ],
+            [
+                'parent_id' => $menus_id,
+                'navigation_name' => '系统路由管理',
+                'navigation_link' => '/system/router',
+                'navigation_sort' => 12,
+                'menu_show' => 1,
+                'icon' => 'line-chart',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
 //            [
 //                'parent_id' => $menus_id,
 //                'navigation_name' => 'app错误日志管理',
