@@ -23,7 +23,7 @@ class ActionLog extends Model
 {
     use HasFactory, SoftDeletes, ActionLogBuild, CreatedRelation, SearchData;
 
-    protected $table = 'action_logs';
+    protected $table = 'system_action_logs';
 
     protected $fillable = [
         'action_name', 'action_description', 'ip', 'created_at'

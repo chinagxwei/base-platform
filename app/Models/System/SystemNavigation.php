@@ -89,6 +89,23 @@ class SystemNavigation extends Model
             })->with($with)->orderBy('navigation_sort')->get();
     }
 
+    /**
+     * @param $parent_id
+     * @param $with
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public static function findOneByParent($parent_id, $with = [])
+    {
+        return self::query()
+            ->select([
+                'id', 'parent_id', 'navigation_name',
+                'navigation_link', 'menu_show', 'icon', 'navigation_sort'
+            ])->where('parent_id', $parent_id)
+            ->with($with)
+            ->orderBy('navigation_sort')
+            ->get();
+    }
+
     function searchBuild($param = [], $with = [])
     {
         // TODO: Implement searchBuild() method.

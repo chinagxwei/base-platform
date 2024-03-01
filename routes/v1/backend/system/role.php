@@ -9,7 +9,9 @@ Route::group([
 
 ], function ($router) {
     Route::any('role/index', [SystemRoleController::class, 'index']);
-    Route::any('role/save', [SystemRoleController::class, 'save']);
+    Route::post('role/save', [SystemRoleController::class, 'save']);
     Route::any('role/view', [SystemRoleController::class, 'view']);
-    Route::any('role/delete', [SystemRoleController::class, 'delete']);
+    Route::post('role/delete', [SystemRoleController::class, 'delete']);
+    Route::post('role/set-navigation', [SystemRoleController::class, 'setNavigation']);
+    Route::post('role/set-router', [SystemRoleController::class, 'setRouter']);
 });

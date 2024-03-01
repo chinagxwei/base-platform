@@ -9,6 +9,7 @@ import {RoleService} from "../../../services/system/role.service";
 import {NavigationService} from "../../../services/system/navigation.service";
 import {NzTableQueryParams} from "ng-zorro-antd/table";
 import {tap} from "rxjs";
+import {ResponseCode} from "../../../utils/response-code";
 
 @Component({
   selector: 'app-role',
@@ -46,7 +47,6 @@ export class RoleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initForm();
     this.getItems();
     this.getAllMenu()
   }
@@ -61,7 +61,8 @@ export class RoleComponent implements OnInit {
   }
 
   add() {
-    this.validateForm.reset();
+    // this.validateForm.reset();
+    this.initForm();
     this.showModal();
   }
 
@@ -74,22 +75,23 @@ export class RoleComponent implements OnInit {
   }
 
   showModal2(data: Role): void {
-    this.roleService.view(data.id).subscribe(({code, data}) => {
-      if (code === 0) {
-        this.currentConfig = data;
-        this.list = [];
-        this.allMenu.forEach(v => {
-          const direction = this.currentConfig?.navigations?.find(v2 => v.id === v2.id) ? 'right' : undefined;
-          this.list.push({
-            key: v.id,
-            title: v.navigation_name,
-            description: v.navigation_name,
-            direction: direction
-          });
-        })
-        this.isConfigVisible = true;
-      }
-    })
+    this.isConfigVisible = true;
+    // this.roleService.view(data.id).subscribe(({code, data}) => {
+    //   if (code === 0) {
+    //     this.currentConfig = data;
+    //     this.list = [];
+    //     this.allMenu.forEach(v => {
+    //       const direction = this.currentConfig?.navigations?.find(v2 => v.id === v2.id) ? 'right' : undefined;
+    //       this.list.push({
+    //         key: v.id,
+    //         title: v.navigation_name,
+    //         description: v.navigation_name,
+    //         direction: direction
+    //       });
+    //     })
+    //     this.isConfigVisible = true;
+    //   }
+    // })
   }
 
   handleCancel2() {
@@ -154,7 +156,7 @@ export class RoleComponent implements OnInit {
     if (this.validateForm.valid) {
       this.roleService.save(this.validateForm.value).subscribe(res => {
         console.log(res);
-        if (res.code === 0) {
+        if (res.code === ResponseCode.RESPONSE_SUCCESS) {
           this.message.success(res.message);
           this.handleCancel();
           this.validateForm.reset();
@@ -184,13 +186,13 @@ export class RoleComponent implements OnInit {
   }
 
   change(ret: { from: string, list: TransferItem[], to: string }): void {
-    // @ts-ignore
-    const m = ret.list.map(v => v.key);
-    const type = (ret.from === 'left' && ret.to === 'right') ? 1 : 0;
-    // @ts-ignore
-    this.roleService.configMenu({role: this.currentConfig?.id, menus: m, type})
-      .subscribe(res => {
-        console.log(res);
-      });
+    // // @ts-ignore
+    // const m = ret.list.map(v => v.key);
+    // const type = (ret.from === 'left' && ret.to === 'right') ? 1 : 0;
+    // // @ts-ignore
+    // this.roleService.configMenu({role: this.currentConfig?.id, menus: m, type})
+    //   .subscribe(res => {
+    //     console.log(res);
+    //   });
   }
 }

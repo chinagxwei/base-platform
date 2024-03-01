@@ -27,7 +27,7 @@ class SystemRoleController extends PlatformController
     public function view(Request $request)
     {
         if ($id = $request->input('id')) {
-            if ($model = SystemRole::findOneByID($id)) {
+            if ($model = SystemRole::findOneByID($id, ['navigations', 'routers'])) {
                 return self::successJsonResponse($model);
             }
         }
@@ -46,7 +46,7 @@ class SystemRoleController extends PlatformController
 
             try {
                 $this->validate($request, [
-                    'role_name' => 'required|min:5',
+                    'role_name' => 'required|min:2',
                 ]);
 
                 if ($id > 0) {
@@ -76,6 +76,30 @@ class SystemRoleController extends PlatformController
             if ($model = SystemRole::findOneByID($id)) {
                 $this->deleteEvent($model->role_name);
                 $model->delete();
+                return self::successJsonResponse();
+            }
+        }
+
+        return self::failJsonResponse();
+    }
+
+    public function setNavigation(Request $request){
+        if ($id = $request->input('id')) {
+            $navigation_ids = $request->input('navigation_ids');
+            if ($model = SystemRole::findOneByID($id)) {
+                $model->navigations()->sync($navigation_ids);
+                return self::successJsonResponse();
+            }
+        }
+
+        return self::failJsonResponse();
+    }
+
+    public function setRouter(Request $request){
+        if ($id = $request->input('id')) {
+            $router_ids = $request->input('router_ids');
+            if ($model = SystemRole::findOneByID($id)) {
+                $model->routers()->sync($router_ids);
                 return self::successJsonResponse();
             }
         }

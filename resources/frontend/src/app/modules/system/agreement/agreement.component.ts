@@ -9,6 +9,7 @@ import {NzModalService} from "ng-zorro-antd/modal";
 import {AgreementService} from "../../../services/system/agreement.service";
 import {NzTableQueryParams} from "ng-zorro-antd/table";
 import {tap} from "rxjs";
+import {ResponseCode} from "../../../utils/response-code";
 
 @Component({
   selector: 'app-agreement',
@@ -124,7 +125,7 @@ export class AgreementComponent implements OnInit {
     if (this.validateForm.valid) {
       this.componentService.save(this.validateForm.value).subscribe(res => {
         console.log(res);
-        if (res.code === 200) {
+        if (res.code === ResponseCode.RESPONSE_SUCCESS) {
           this.message.success(res.message);
           this.handleCancel();
           this.validateForm.reset();

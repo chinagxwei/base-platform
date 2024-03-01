@@ -30,7 +30,12 @@ export const ROLE_SEARCH = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/role
 /**
  * 配置菜单
  */
-export const ROLE_CONFIG_MENU = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/role/config-menu`;
+export const ROLE_CONFIG_NAVIGATION = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/role/set-navigation`;
+
+/**
+ * 配置路由
+ */
+export const ROLE_CONFIG_ROUTER = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/role/set-router`;
 
 /**
  * 导航列表
@@ -51,6 +56,16 @@ export const NAVIGATION_DELETE = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE
  * 导航排序
  */
 export const NAVIGATION_SORT = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/navigation/sort-change`;
+
+/**
+ * 根据父菜单获取导航数据
+ */
+export const NAVIGATION_FIND_BY_PARENT = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/navigation/find-by-parent`;
+
+/**
+ * 已注册导航列表
+ */
+export const NAVIGATION_REGISTERED = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/navigation/registered`;
 
 /**
  * 所有导航

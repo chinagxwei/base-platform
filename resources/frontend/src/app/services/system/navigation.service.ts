@@ -4,8 +4,8 @@ import {Paginate} from "../../models/server-response";
 import {Navigation} from "../../models/system";
 import {
   NAVIGATION_ALL_ITEMS,
-  NAVIGATION_DELETE,
-  NAVIGATION_ITEMS,
+  NAVIGATION_DELETE, NAVIGATION_FIND_BY_PARENT,
+  NAVIGATION_ITEMS, NAVIGATION_REGISTERED,
   NAVIGATION_SAVE,
   NAVIGATION_SORT
 } from "../../api/system.api";
@@ -32,6 +32,14 @@ export class NavigationService {
 
   public sort(sortItems: { id: number, sort: number }[]) {
     return this.http.post(NAVIGATION_SORT, sortItems);
+  }
+
+  public findByParent(parent_id: number) {
+    return this.http.post<Navigation[]>(NAVIGATION_FIND_BY_PARENT);
+  }
+
+  public registered() {
+    return this.http.post<Navigation[]>(NAVIGATION_REGISTERED);
   }
 
   public all() {

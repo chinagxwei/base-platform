@@ -12,5 +12,7 @@ Route::group([
     Route::any('navigation/save', [SystemNavigationController::class, 'save']);
     Route::any('navigation/delete', [SystemNavigationController::class, 'delete']);
     Route::any('navigation/all', [SystemNavigationController::class, 'allMenu']);
+    Route::any('navigation/find-by-parent', [SystemNavigationController::class, 'getMenuByParent']);
+    Route::any('navigation/registered', [SystemNavigationController::class, 'registeredMenu']);
     Route::any('navigation/sort-change', [SystemNavigationController::class, 'sortChange']);
 });

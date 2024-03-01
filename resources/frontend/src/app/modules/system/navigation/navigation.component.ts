@@ -8,6 +8,7 @@ import {NavigationService} from "../../../services/system/navigation.service";
 import {NzTableQueryParams} from "ng-zorro-antd/table";
 import {tap} from "rxjs";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {ResponseCode} from "../../../utils/response-code";
 
 @Component({
   selector: 'app-navigation',
@@ -114,7 +115,7 @@ export class NavigationComponent implements OnInit {
     if (this.validateForm.valid) {
       this.navigationService.save(this.validateForm.value).subscribe(res => {
         console.log(res);
-        if (res.code === 0) {
+        if (res.code === ResponseCode.RESPONSE_SUCCESS) {
           this.message.success(res.message);
           this.handleCancel();
           this.validateForm.reset();

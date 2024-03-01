@@ -7,6 +7,7 @@ import {NzModalService} from "ng-zorro-antd/modal";
 import {RouterService} from "../../../services/system/router.service";
 import {NzTableQueryParams} from "ng-zorro-antd/table";
 import {tap} from "rxjs";
+import {ResponseCode} from "../../../utils/response-code";
 
 @Component({
   selector: 'app-router',
@@ -113,7 +114,7 @@ export class RouterComponent implements OnInit {
     if (this.validateForm.valid) {
       this.componentService.save(this.validateForm.value).subscribe(res => {
         console.log(res);
-        if (res.code === 200) {
+        if (res.code === ResponseCode.RESPONSE_SUCCESS) {
           this.message.success(res.message);
           this.handleCancel();
           this.validateForm.reset();

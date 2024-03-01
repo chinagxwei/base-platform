@@ -7,6 +7,7 @@ import {NzModalService} from "ng-zorro-antd/modal";
 import {UnitService} from "../../../services/system/unit.service";
 import {NzTableQueryParams} from "ng-zorro-antd/table";
 import {tap} from "rxjs";
+import {ResponseCode} from "../../../utils/response-code";
 
 @Component({
   selector: 'app-unit',
@@ -116,7 +117,7 @@ export class UnitComponent implements OnInit {
     if (this.validateForm.valid) {
       this.componentService.save(this.validateForm.value).subscribe(res => {
         console.log(res);
-        if (res.code === 200) {
+        if (res.code === ResponseCode.RESPONSE_SUCCESS) {
           this.message.success(res.message);
           this.handleCancel();
           this.validateForm.reset();
