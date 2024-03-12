@@ -27,28 +27,28 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '协议列表',
-                'router' => '/api/v1/agreement/index',
+                'router' => '/api/v1/system/agreement/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '协议保存',
-                'router' => '/api/v1/agreement/save',
+                'router' => '/api/v1/system/agreement/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '协议详情',
-                'router' => '/api/v1/agreement/view',
+                'router' => '/api/v1/system/agreement/view',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除协议',
-                'router' => '/api/v1/agreement/delete',
+                'router' => '/api/v1/system/agreement/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -62,28 +62,28 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '投诉列表',
-                'router' => '/api/v1/complaint/index',
+                'router' => '/api/v1/system/complaint/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '投诉保存',
-                'router' => '/api/v1/complaint/save',
+                'router' => '/api/v1/system/complaint/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '投诉详情',
-                'router' => '/api/v1/complaint/view',
+                'router' => '/api/v1/system/complaint/view',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除投诉',
-                'router' => '/api/v1/complaint/delete',
+                'router' => '/api/v1/system/complaint/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -97,35 +97,35 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '图片列表',
-                'router' => '/api/v1/images/index',
+                'router' => '/api/v1/system/images/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '图片保存',
-                'router' => '/api/v1/images/save',
+                'router' => '/api/v1/system/images/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '图片详情',
-                'router' => '/api/v1/images/view',
+                'router' => '/api/v1/system/images/view',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '图片上传',
-                'router' => '/api/v1/images/upload',
+                'router' => '/api/v1/system/images/upload',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除图片',
-                'router' => '/api/v1/images/delete',
+                'router' => '/api/v1/system/images/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -138,28 +138,28 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '标签列表',
-                'router' => '/api/v1/tag/index',
+                'router' => '/api/v1/system/tag/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '标签保存',
-                'router' => '/api/v1/tag/save',
+                'router' => '/api/v1/system/tag/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '标签详情',
-                'router' => '/api/v1/tag/view',
+                'router' => '/api/v1/system/tag/view',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除标签',
-                'router' => '/api/v1/tag/delete',
+                'router' => '/api/v1/system/tag/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -172,28 +172,28 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '单位列表',
-                'router' => '/api/v1/unit/index',
+                'router' => '/api/v1/system/unit/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '单位保存',
-                'router' => '/api/v1/unit/save',
+                'router' => '/api/v1/system/unit/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '单位详情',
-                'router' => '/api/v1/unit/view',
+                'router' => '/api/v1/system/unit/view',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除单位',
-                'router' => '/api/v1/unit/delete',
+                'router' => '/api/v1/system/unit/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -206,28 +206,28 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '配置列表',
-                'router' => '/api/v1/config/index',
+                'router' => '/api/v1/system/config/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '配置保存',
-                'router' => '/api/v1/config/save',
+                'router' => '/api/v1/system/config/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '配置详情',
-                'router' => '/api/v1/config/view',
+                'router' => '/api/v1/system/config/view',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除配置',
-                'router' => '/api/v1/config/delete',
+                'router' => '/api/v1/system/config/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -240,28 +240,28 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '导航列表',
-                'router' => '/api/v1/navigation/index',
+                'router' => '/api/v1/system/navigation/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '导航保存',
-                'router' => '/api/v1/navigation/save',
+                'router' => '/api/v1/system/navigation/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '导航详情',
-                'router' => '/api/v1/navigation/view',
+                'router' => '/api/v1/system/navigation/view',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除导航',
-                'router' => '/api/v1/navigation/delete',
+                'router' => '/api/v1/system/navigation/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -274,28 +274,28 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '角色列表',
-                'router' => '/api/v1/role/index',
+                'router' => '/api/v1/system/role/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '角色保存',
-                'router' => '/api/v1/role/save',
+                'router' => '/api/v1/system/role/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '角色详情',
-                'router' => '/api/v1/role/view',
+                'router' => '/api/v1/system/role/view',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除角色',
-                'router' => '/api/v1/role/delete',
+                'router' => '/api/v1/system/role/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -308,28 +308,35 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '管理员列表',
-                'router' => '/api/v1/manager/index',
+                'router' => '/api/v1/system/manager/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '管理员保存',
-                'router' => '/api/v1/manager/save',
+                'router' => '/api/v1/system/manager/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '管理员详情',
-                'router' => '/api/v1/manager/view',
+                'router' => '/api/v1/system/manager/view',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'router_name' => '管理员信息',
+                'router' => '/api/v1/system/manager/info',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除管理员',
-                'router' => '/api/v1/manager/delete',
+                'router' => '/api/v1/system/manager/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -342,14 +349,14 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '管理员日志列表',
-                'router' => '/api/v1/action-log/index',
+                'router' => '/api/v1/system/action-log/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除管理员日志',
-                'router' => '/api/v1/action-log/delete',
+                'router' => '/api/v1/system/action-log/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
@@ -361,28 +368,28 @@ class BaseSystemRouterData
         return [
             [
                 'router_name' => '管理路由列表',
-                'router' => '/api/v1/router/index',
+                'router' => '/api/v1/system/router/index',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '保存管理路由',
-                'router' => '/api/v1/router/save',
+                'router' => '/api/v1/system/router/save',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '删除管理路由',
-                'router' => '/api/v1/router/delete',
+                'router' => '/api/v1/system/router/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time
             ],
             [
                 'router_name' => '注册路由',
-                'router' => '/api/v1/router/registered-route',
+                'router' => '/api/v1/system/router/registered-route',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time

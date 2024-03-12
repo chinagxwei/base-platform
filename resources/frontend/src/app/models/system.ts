@@ -65,6 +65,11 @@ export class SystemRouter{
   created_at?: number = 0;
 }
 
+export class RegisterRouter{
+  uri: string = "";
+  method: string = "";
+}
+
 export class SystemImage {
   id?: number;
   title: string = "";

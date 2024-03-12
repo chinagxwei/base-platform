@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Paginate} from "../../../models/server-response";
-import {SystemRouter} from "../../../models/system";
+import {RegisterRouter, SystemRouter} from "../../../models/system";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {NzModalService} from "ng-zorro-antd/modal";
@@ -22,6 +22,8 @@ export class RouterComponent implements OnInit {
 
   listOfData: SystemRouter[] = [];
 
+  registerList: RegisterRouter[] | undefined = []
+
   validateForm: FormGroup;
 
   isVisible: boolean = false;
@@ -38,6 +40,7 @@ export class RouterComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.getItems();
+    this.getRegisteredRoute();
   }
 
 
@@ -56,6 +59,15 @@ export class RouterComponent implements OnInit {
           this.listOfData = data.data;
         }
       })
+  }
+
+  private getRegisteredRoute() {
+    this.componentService.systemRoute().subscribe(res => {
+      console.log(res)
+      if (res.code === ResponseCode.RESPONSE_SUCCESS){
+        this.registerList = res.data;
+      }
+    })
   }
 
   initForm() {
@@ -117,7 +129,6 @@ export class RouterComponent implements OnInit {
         if (res.code === ResponseCode.RESPONSE_SUCCESS) {
           this.message.success(res.message);
           this.handleCancel();
-          this.validateForm.reset();
           this.getItems(this.currentData.current_page);
         }
       });

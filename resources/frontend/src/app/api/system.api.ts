@@ -38,6 +38,17 @@ export const ROLE_CONFIG_NAVIGATION = `${HOST}/api/${API_VERSION}/${SYSTEM_API_M
 export const ROLE_CONFIG_ROUTER = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/role/set-router`;
 
 /**
+ * 获取角色路由
+ */
+export const ROLE_GET_NAVIGATION = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/role/get-navigation-by-role`;
+
+/**
+ * 获取角色菜单
+ */
+export const ROLE_GET_ROUTER = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/role/get-router-by-role`;
+
+
+/**
  * 导航列表
  */
 export const NAVIGATION_ITEMS = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/navigation/index`;
@@ -93,6 +104,11 @@ export const MANAGER_SAVE = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/man
  * 删除管理员
  */
 export const MANAGER_DELETE = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/manager/delete`;
+
+/**
+ * 管理员信息
+ */
+export const MANAGER_INFO = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/manager/info`;
 
 /**
  * 管理员行为日志
@@ -225,7 +241,12 @@ export const ROUTER_SAVE = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/rout
 export const ROUTER_DELETE = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/router/delete`;
 
 /**
- * 已经注册路由
+ * 系统路由
  */
-export const ROUTER_REGISTERED = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/router/registered-route`;
+export const ROUTER_SYSTEM_ITEM = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/router/system-router`;
+
+/**
+ * 已注册路由
+ */
+export const ROUTER_REGISTERED = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/router/registered-router`;
 

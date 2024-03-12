@@ -23,7 +23,7 @@
       <td>
         <a (click)="showModal2(data)">配置菜单</a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a>配置路由</a>
+        <a (click)="showConfigRouter(data)">配置路由</a>
         <nz-divider nzType="vertical"></nz-divider>
         <a (click)="update(data)">编辑</a>
         <nz-divider nzType="vertical"></nz-divider>
@@ -48,18 +48,20 @@
       <button nz-button nzType="primary" (click)="handleOk()">保存</button>
     </div>
   </nz-modal>
-  <nz-modal [nzWidth]="600" [(nzVisible)]="isConfigVisible" nzTitle="菜单配置" (nzOnCancel)="handleCancel2()">
-    <div *nzModalContent>
-<!--      <nz-transfer-->
-<!--        [nzDataSource]="list"-->
-<!--        nzShowSearch-->
-<!--        [nzFilterOption]="filterOption"-->
-<!--        (nzSearchChange)="search($event)"-->
-<!--        (nzChange)="change($event)"-->
-<!--      ></nz-transfer>-->
-    </div>
-    <div *nzModalFooter>
-      <button nz-button nzType="default" (click)="handleCancel2()">关闭</button>
-    </div>
-  </nz-modal>
+<!--  <nz-modal [nzWidth]="600" [(nzVisible)]="isConfigVisible" nzTitle="菜单配置" (nzOnCancel)="handleCancel2()">-->
+<!--    <div *nzModalContent>-->
+<!--&lt;!&ndash;      <nz-transfer&ndash;&gt;-->
+<!--&lt;!&ndash;        [nzDataSource]="list"&ndash;&gt;-->
+<!--&lt;!&ndash;        nzShowSearch&ndash;&gt;-->
+<!--&lt;!&ndash;        [nzFilterOption]="filterOption"&ndash;&gt;-->
+<!--&lt;!&ndash;        (nzSearchChange)="search($event)"&ndash;&gt;-->
+<!--&lt;!&ndash;        (nzChange)="change($event)"&ndash;&gt;-->
+<!--&lt;!&ndash;      ></nz-transfer>&ndash;&gt;-->
+<!--    </div>-->
+<!--    <div *nzModalFooter>-->
+<!--      <button nz-button nzType="default" (click)="handleCancel2()">关闭</button>-->
+<!--    </div>-->
+<!--  </nz-modal>-->
+  <app-config-navigation [(visible)]="isConfigVisible" [currentRole]="currentRole"></app-config-navigation>
+  <app-config-router [(visible)]="isConfigRouterVisible" [currentRole]="currentRole"></app-config-router>
 </div>

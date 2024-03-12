@@ -104,6 +104,7 @@ class SystemNavigationController extends PlatformController
     {
         $menus = SystemNavigation::query()
             ->select(['id', 'parent_id', 'navigation_name', 'navigation_link', 'menu_show', 'icon', 'navigation_sort'])
+            ->whereNull('parent_id')
             ->with([SystemNavigation::DEFAULT_WITH_CHILDREN_FIELD])
             ->get();
 

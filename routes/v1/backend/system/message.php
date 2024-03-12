@@ -9,8 +9,4 @@ Route::group([
 
 ], function ($router) {
     Route::any('message/index', [SystemMessageController::class, 'index']);
-    Route::any('message/index', [SystemMessageController::class, 'save']);
-    Route::any('message/index', [SystemMessageController::class, 'view']);
-    Route::any('message/index', [SystemMessageController::class, 'delete']);
-    Route::any('message/index', [SystemMessageController::class, 'send']);
 });

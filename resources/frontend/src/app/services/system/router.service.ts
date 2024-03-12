@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpReprint} from "../../utils/http-reprint";
 import {Paginate} from "../../models/server-response";
-import {SystemRouter} from "../../models/system";
-import {ROUTER_DELETE, ROUTER_ITEMS, ROUTER_REGISTERED, ROUTER_SAVE} from "../../api/system.api";
+import {RegisterRouter, SystemRouter} from "../../models/system";
+import {ROUTER_DELETE, ROUTER_ITEMS, ROUTER_REGISTERED, ROUTER_SAVE, ROUTER_SYSTEM_ITEM} from "../../api/system.api";
 
 
 @Injectable({
@@ -17,8 +17,12 @@ export class RouterService {
     return this.http.post<Paginate<SystemRouter>>(`${ROUTER_ITEMS}?page=${page}`, query)
   }
 
-  public registeredRoute(page: number = 1, query?: SystemRouter | { title: string }) {
-    return this.http.post<string[]>(`${ROUTER_REGISTERED}`, query)
+  public systemRoute() {
+    return this.http.post<RegisterRouter[]>(`${ROUTER_SYSTEM_ITEM}`)
+  }
+
+  public registeredRoute() {
+    return this.http.post<SystemRouter[]>(`${ROUTER_REGISTERED}`)
   }
 
   public save(postData: SystemRouter) {

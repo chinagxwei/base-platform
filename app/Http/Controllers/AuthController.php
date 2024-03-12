@@ -168,24 +168,24 @@ class AuthController extends PlatformController
         return self::failJsonResponse("请求错误");
     }
 
-    /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function info()
-    {
-        /** @var User $user */
-        $user = auth('api')->user();
-
-        if ($user && ($user->isSuperManager() || $user->isManager() || $user->isEnterpriseManager())) {
-            $navigation_str = Cache::get(SystemNavigation::USER_NAVIGATION_KEY . "_{$user->id}");
-            $info = $user->admin->toArray();
-            $info['navigations'] = json_decode($navigation_str) ?? [];
-            return self::successJsonResponse($info);
-        }
-        return self::failJsonResponse('Not Found');
-    }
+//    /**
+//     * Get the authenticated User.
+//     *
+//     * @return \Illuminate\Http\JsonResponse
+//     */
+//    public function info()
+//    {
+//        /** @var User $user */
+//        $user = auth('api')->user();
+//
+//        if ($user && ($user->isSuperManager() || $user->isManager() || $user->isEnterpriseManager())) {
+//            $navigation_str = Cache::get(SystemNavigation::USER_NAVIGATION_KEY . "_{$user->id}");
+//            $info = $user->admin->toArray();
+//            $info['navigations'] = json_decode($navigation_str) ?? [];
+//            return self::successJsonResponse($info);
+//        }
+//        return self::failJsonResponse('Not Found');
+//    }
 
     /**
      * Log the user out (Invalidate the token).

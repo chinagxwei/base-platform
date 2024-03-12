@@ -1,6 +1,6 @@
 <div class="inner-content">
   <button style="margin-bottom: 10px;" nz-button nzType="primary" (click)="add()">
-    <span>添加标签</span>
+    <span>注册管理路由</span>
   </button>
   <nz-table [nzLoading]="loading"
             [nzData]="listOfData"
@@ -31,7 +31,7 @@
     </tbody>
   </nz-table>
 </div>
-<nz-modal [(nzVisible)]="isVisible" nzTitle="编辑路由" (nzOnCancel)="handleCancel()">
+<nz-modal [nzWidth]="900" [(nzVisible)]="isVisible" nzTitle="编辑路由" (nzOnCancel)="handleCancel()">
   <div *nzModalContent>
     <form nz-form [formGroup]="validateForm">
       <nz-form-item>
@@ -43,8 +43,10 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="router">路由</nz-form-label>
         <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="请输入路由!">
-          <nz-input-number style="width: 100%;" formControlName="router" [nzMin]="0" [nzMax]="10" [nzStep]="1" id="router"
-                           placeholder="路由"></nz-input-number>
+          <nz-select nzPlaceHolder="选择路由" formControlName="router" nzShowSearch nzAllowClear>
+            <nz-option *ngFor="let option of registerList" [nzLabel]="option.uri+' |（'+option.method+'）'"
+                       [nzValue]="option.uri"></nz-option>
+          </nz-select>
         </nz-form-control>
       </nz-form-item>
     </form>

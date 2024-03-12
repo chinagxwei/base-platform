@@ -36,6 +36,9 @@ import {ManagerComponent} from './manager/manager.component';
 import {ManagerMessageComponent} from './manager/manager-message/manager-message.component';
 import {MessageComponent} from './message/message.component';
 import {NzMessageService} from "ng-zorro-antd/message";
+import { ConfigRouterComponent } from './role/config-router/config-router.component';
+import { ConfigNavigationComponent } from './role/config-navigation/config-navigation.component';
+import {NzTreeModule} from "ng-zorro-antd/tree";
 
 
 @NgModule({
@@ -55,32 +58,35 @@ import {NzMessageService} from "ng-zorro-antd/message";
     TagComponent,
     ManagerComponent,
     ManagerMessageComponent,
-    MessageComponent
+    MessageComponent,
+    ConfigRouterComponent,
+    ConfigNavigationComponent
   ],
-  imports: [
-    CommonModule,
-    SystemRoutingModule,
-    NzTableModule,
-    NzFormModule,
-    NzSelectModule,
-    NzIconModule,
-    FormsModule,
-    NzButtonModule,
-    NzDividerModule,
-    NzModalModule,
-    NzInputModule,
-    ReactiveFormsModule,
-    NzInputNumberModule,
-    NzTransferModule,
-    DragDropModule,
-    NzTagModule,
-    EditorForAngularModule,
-    NzSwitchModule,
-    NzLayoutModule,
-    NzMenuModule,
-    RouterLinkActive,
-    RouterOutlet
-  ],
+    imports: [
+        CommonModule,
+        SystemRoutingModule,
+        NzTableModule,
+        NzFormModule,
+        NzSelectModule,
+        NzIconModule,
+        FormsModule,
+        NzButtonModule,
+        NzDividerModule,
+        NzModalModule,
+        NzInputModule,
+        ReactiveFormsModule,
+        NzInputNumberModule,
+        NzTransferModule,
+        DragDropModule,
+        NzTagModule,
+        EditorForAngularModule,
+        NzSwitchModule,
+        NzLayoutModule,
+        NzMenuModule,
+        RouterLinkActive,
+        RouterOutlet,
+        NzTreeModule
+    ],
   providers: [NzModalService, NzMessageService]
 })
 export class SystemModule {

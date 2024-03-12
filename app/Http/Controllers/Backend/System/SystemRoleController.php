@@ -106,4 +106,32 @@ class SystemRoleController extends PlatformController
 
         return self::failJsonResponse();
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getRouterByRole(Request $request){
+        if ($id = $request->input('id')) {
+            if ($model = SystemRole::findOneByID($id)) {
+                return self::successJsonResponse($model->routers);
+            }
+        }
+
+        return self::failJsonResponse();
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getNavigationByRole(Request $request){
+        if ($id = $request->input('id')) {
+            if ($model = SystemRole::findOneByID($id)) {
+                return self::successJsonResponse($model->navigations);
+            }
+        }
+
+        return self::failJsonResponse();
+    }
 }

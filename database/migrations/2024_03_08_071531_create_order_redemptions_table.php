@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('system_routers', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->string('router_name', 64)->comment('导航名称');
-            $table->string('router', 128)->nullable()->unique()->comment('路由');
+        Schema::create('order_redemptions', function (Blueprint $table) {
+            $table->string('order_sn', 64)->index()->nullable()->comment('订单编号');
+            $table->uuid('member_id')->index()->nullable()->comment('会员ID');
             $table->integer('created_at')->unsigned()->nullable();
             $table->integer('updated_at')->unsigned()->nullable();
             $table->integer('created_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('updated_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('deleted_at')->unsigned()->nullable();
-            $table->comment('平台路由表');
+            $table->primary(['order_sn']);
+            $table->comment('订单核销表');
         });
     }
 
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('system_routes');
+        Schema::dropIfExists('order_redemptions');
     }
 };

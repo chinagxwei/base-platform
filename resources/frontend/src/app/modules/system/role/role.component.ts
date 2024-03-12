@@ -28,13 +28,15 @@ export class RoleComponent implements OnInit {
 
   isConfigVisible = false;
 
+  isConfigRouterVisible = false;
+
   validateForm: FormGroup;
 
   list: TransferItem[] = [];
 
   allMenu: Navigation[] = [];
 
-  currentConfig?: Role;
+  currentRole: Role = new Role();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -75,6 +77,7 @@ export class RoleComponent implements OnInit {
   }
 
   showModal2(data: Role): void {
+    this.currentRole = data;
     this.isConfigVisible = true;
     // this.roleService.view(data.id).subscribe(({code, data}) => {
     //   if (code === 0) {
@@ -94,9 +97,13 @@ export class RoleComponent implements OnInit {
     // })
   }
 
+  showConfigRouter(data: Role){
+    this.currentRole = data;
+    this.isConfigRouterVisible = true;
+  }
+
   handleCancel2() {
     this.isConfigVisible = false;
-    this.currentConfig = undefined;
   }
 
   handleOk() {

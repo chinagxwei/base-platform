@@ -11,4 +11,5 @@ Route::group([
     Route::any('manager/index', [SystemAdminController::class, 'index']);
     Route::any('manager/save', [SystemAdminController::class, 'save']);
     Route::any('manager/delete', [SystemAdminController::class, 'delete']);
+    Route::any('manager/info', [SystemAdminController::class, 'info']);
 });

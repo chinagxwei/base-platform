@@ -28,6 +28,11 @@ class RouterCheckService
         if (empty($path) || empty($this->allowedRoutes) || count($this->allowedRoutes) <= 0) {
             return false;
         }
+
+        if (in_array($path, $this->allowedRoutes)) {
+            return true;
+        }
+
         foreach ($this->allowedRoutes as $allowedRoute) {
 //            Log::info($path);
 //            Log::info($allowedRoute);

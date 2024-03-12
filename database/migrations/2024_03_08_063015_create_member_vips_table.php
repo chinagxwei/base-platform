@@ -13,16 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('system_routers', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->string('router_name', 64)->comment('导航名称');
-            $table->string('router', 128)->nullable()->unique()->comment('路由');
+        Schema::create('member_vips', function (Blueprint $table) {
+            $table->uuid('member_id')->index()->nullable()->comment('会员ID');
+            $table->integer('vip_id')->index()->nullable()->comment('VIP编号');
+            $table->string('order_sn', 64)->index()->nullable()->comment('订单编号');
+            $table->tinyInteger('channel')->unsigned()->nullable()->comment('充值渠道 1用户 2平台');
+            $table->integer('started_at')->unsigned()->nullable()->comment('开始时间');
+            $table->integer('ended_at')->unsigned()->nullable()->comment('结束时间');
             $table->integer('created_at')->unsigned()->nullable();
             $table->integer('updated_at')->unsigned()->nullable();
             $table->integer('created_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('updated_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('deleted_at')->unsigned()->nullable();
-            $table->comment('平台路由表');
+            $table->primary(['member_id', 'vip_id', 'order_sn']);
+            $table->comment('会员获取VIP表');
         });
     }
 
@@ -33,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('system_routes');
+        Schema::dropIfExists('member_vips');
     }
 };

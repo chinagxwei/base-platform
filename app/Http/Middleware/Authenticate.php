@@ -29,17 +29,6 @@ class Authenticate extends Middleware
 
         $path = "/" . $request->path();
 
-//        Log::info($path);
-
-        $routes = Route::getRoutes();
-
-        foreach ($routes as $k=>$value){
-            $route_path[$k]['uri'] = $value->uri;
-            $methods = join('|', $value->methods);
-            $route_path[$k]['methods'] = ($methods == 'GET|HEAD|POST|PUT|PATCH|DELETE|OPTIONS' ? 'ANY' : $methods);
-        }
-//        Log::info($route_path);
-
         /** @var User $user */
         if ($user = auth('api')->user()) {
 
@@ -52,6 +41,8 @@ class Authenticate extends Middleware
                 $routes_str = Cache::get(SystemRouter::USER_ROUTER_KEY . "_{$user->id}");
 
                 $allow_routes = json_decode($routes_str) ?? [];
+
+//                Log::info($allow_routes);
 
                 /** @var RouterCheckService $service */
                 $service = app(RouterCheckService::class);

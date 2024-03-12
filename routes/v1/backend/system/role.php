@@ -14,4 +14,6 @@ Route::group([
     Route::post('role/delete', [SystemRoleController::class, 'delete']);
     Route::post('role/set-navigation', [SystemRoleController::class, 'setNavigation']);
     Route::post('role/set-router', [SystemRoleController::class, 'setRouter']);
+    Route::post('role/get-router-by-role', [SystemRoleController::class, 'getRouterByRole']);
+    Route::post('role/get-navigation-by-role', [SystemRoleController::class, 'getNavigationByRole']);
 });

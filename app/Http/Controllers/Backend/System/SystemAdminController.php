@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend\System;
 
 use App\Http\Controllers\PlatformController;
 use App\Models\System\SystemAdmin;
+use App\Models\System\SystemNavigation;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SystemAdminController extends PlatformController
 {
@@ -42,6 +44,10 @@ class SystemAdminController extends PlatformController
                 $model->registerManager($request->all());
 
                 $admin = new SystemAdmin();
+
+                $admin->setMobile($param['mobile'])
+                    ->setAdminRole($param['role_id'])
+                    ->setNickname($model->username);
 
                 if (!empty($param['remark'])) {
                     $admin->setRemark($param['remark']);
@@ -88,5 +94,18 @@ class SystemAdminController extends PlatformController
         }
 
         return self::failJsonResponse();
+    }
+
+    public function info(){
+        /** @var User $user */
+        $user = auth('api')->user();
+
+        if ($user && ($user->isSuperManager() || $user->isManager() || $user->isEnterpriseManager())) {
+            $navigation_str = Cache::get(SystemNavigation::USER_NAVIGATION_KEY . "_{$user->id}");
+            $info = $user->admin->toArray();
+            $info['navigations'] = json_decode($navigation_str) ?? [];
+            return self::successJsonResponse($info);
+        }
+        return self::failJsonResponse('Not Found');
     }
 }

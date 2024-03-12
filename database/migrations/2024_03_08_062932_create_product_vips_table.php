@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('system_routers', function (Blueprint $table) {
+        Schema::create('product_vips', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('router_name', 64)->comment('导航名称');
-            $table->string('router', 128)->nullable()->unique()->comment('路由');
+            $table->string('title', 128)->comment('标题');
+            $table->integer('day')->unsigned()->nullable()->comment('天数');
+            $table->bigInteger('price')->unsigned()->nullable()->comment('价格（单位：分）');
+            $table->integer('unit_id')->unsigned()->comment('单位ID');
+            $table->tinyInteger('show')->unsigned()->default(0)->nullable()->comment('是否显示 0不显示 1显示');
             $table->integer('created_at')->unsigned()->nullable();
             $table->integer('updated_at')->unsigned()->nullable();
             $table->integer('created_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('updated_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('deleted_at')->unsigned()->nullable();
-            $table->comment('平台路由表');
+            $table->comment('VIP产品表');
         });
     }
 
@@ -33,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('system_routes');
+        Schema::dropIfExists('product_vips');
     }
 };

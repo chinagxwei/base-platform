@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {PlatformLocation} from "@angular/common";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {UserService} from "../../../services/system/user.service";
+import {ManagerService} from "../../../services/system/manager.service";
 
 @Component({
   selector: 'app-layout',
@@ -34,7 +35,7 @@ export class LayoutComponent implements OnInit {
     private router: Router,
     private platform: PlatformLocation,
     private modalService: NzModalService,
-    private userService: UserService,
+    private managerService: ManagerService,
   ) {
     this.validateForm = this.formBuilder.group({});
   }
@@ -42,8 +43,8 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.getLink();
     this.initNavigationSelect();
-    this.userService.info().subscribe(res => {
-      console.log(res)
+    this.managerService.info().subscribe(res => {
+      // console.log(res)
       if (res.code === 200) {
         this.menuItems = res.data?.navigations ?? [];
         this.username = res.data?.nickname;

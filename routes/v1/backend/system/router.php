@@ -11,5 +11,6 @@ Route::group([
     Route::any('router/index', [SystemRouterController::class, 'index']);
     Route::any('router/save', [SystemRouterController::class, 'save']);
     Route::any('router/delete', [SystemRouterController::class, 'delete']);
-    Route::any('router/registered-route', [SystemRouterController::class, 'registeredRoute']);
+    Route::any('router/system-router', [SystemRouterController::class, 'systemRouter']);
+    Route::any('router/registered-router', [SystemRouterController::class, 'registeredRouter']);
 });

@@ -32,7 +32,7 @@ class SystemRouterController extends PlatformController
             try {
                 $this->validate($request, [
                     'router_name' => 'required|min:3',
-                    'router' => 'required|min:3',
+                    'router' => 'required|min:1',
                 ]);
 
                 if ($id > 0) {
@@ -73,7 +73,16 @@ class SystemRouterController extends PlatformController
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function registeredRoute()
+    public function registeredRouter()
+    {
+        $res = SystemRouter::query()->select(['id','router_name', 'router'])->get();
+        return self::successJsonResponse($res);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function systemRouter()
     {
 
         $user = auth('api')->user();

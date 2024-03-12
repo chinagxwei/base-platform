@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Paginate} from "../../../models/server-response";
 import {ServerManager} from "../../../models/user";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
@@ -55,7 +55,7 @@ export class ManagerComponent implements OnInit {
           this.handleCancel();
           this.validateForm.reset();
           this.getItems(this.currentData.current_page);
-        }else{
+        } else {
           this.message.error(JSON.stringify(res.message));
         }
       });
@@ -133,7 +133,7 @@ export class ManagerComponent implements OnInit {
   add() {
     this.validateForm = this.formBuilder.group({
       role_id: [null, [Validators.required]],
-      mobile:[null, [Validators.required]],
+      mobile: [null, [Validators.required]],
       username: [null, [Validators.required]],
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
@@ -150,11 +150,10 @@ export class ManagerComponent implements OnInit {
   }
 
   onSearch($event: string) {
-    if($event){
-      this.roleService.search($event).subscribe(({code, data}) => {
-        console.log(data);
-        if (data){
-          this.optionList = data.data;
+    if ($event) {
+      this.roleService.items(1, {role_name: $event}).subscribe(res => {
+        if (res.data) {
+          this.optionList = res.data.data;
         }
       })
     }
@@ -167,7 +166,7 @@ export class ManagerComponent implements OnInit {
     this.validateForm = this.formBuilder.group({
       id: [data.id],
       role_id: [data.role?.id],
-      mobile:[data.mobile],
+      mobile: [data.mobile],
     });
     this.showModal()
   }
