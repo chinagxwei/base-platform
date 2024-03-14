@@ -26,6 +26,8 @@ return new class extends Migration
             $table->tinyInteger('tips')->unsigned()->nullable()->comment('提醒 0不提醒 1提醒');
             $table->tinyInteger('openness')->unsigned()->nullable()->comment('开放度 0公开 3私域一对多 7专属一对一 15机构');
             $table->tinyInteger('gmt')->nullable()->comment('时区值');
+            $table->decimal('latitude',10,8)->nullable()->comment('经度');
+            $table->decimal('longitude',11,8)->nullable()->comment('纬度');
             $table->integer('created_at')->unsigned()->nullable();
             $table->integer('updated_at')->unsigned()->nullable();
             $table->integer('created_by')->index()->unsigned()->nullable()->comment('用户ID');

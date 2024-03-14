@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Product;
+namespace App\Http\Controllers\Backend\Business;
 
 use App\Http\Controllers\PlatformController;
-use App\Models\Product\ProductVIP;
+use App\Models\Area;
 use Illuminate\Http\Request;
 
-class VipController extends PlatformController
+class AreaController extends PlatformController
 {
-    protected $controller_event_text = "VIP管理";
+    protected $controller_event_text = "区域管理";
 
     public function index(Request $request){
-        $res = (new ProductVIP())->searchBuild($request->all(), ['unit'])->paginate();
+        $res = (new Area())->searchBuild($request->all())->paginate();
         return self::successJsonResponse($res);
     }
 
@@ -27,14 +27,12 @@ class VipController extends PlatformController
             try {
                 $this->validate($request, [
                     'title' => 'required',
-                    'day' => 'numeric',
-                    'show' => 'numeric',
                 ]);
 
                 if ($id > 0) {
-                    $model = ProductVIP::findOneByID($id);
+                    $model = Area::findOneByID($id);
                 } else {
-                    $model = new ProductVIP();
+                    $model = new Area();
                 }
 
                 if ($model->fill($request->all())->save()) {
@@ -55,7 +53,7 @@ class VipController extends PlatformController
     public function view(Request $request)
     {
         if ($request->isMethod('POST') && $id = $request->input('id')) {
-            if ($model = ProductVIP::findOneByID($id)) {
+            if ($model = Area::findOneByID($id)) {
                 return self::successJsonResponse($model);
             }
         }
@@ -70,7 +68,7 @@ class VipController extends PlatformController
     public function delete(Request $request)
     {
         if ($id = $request->input('id')) {
-            if ($model = ProductVIP::findOneByID($id)) {
+            if ($model = Area::findOneByID($id)) {
                 $this->deleteEvent($model->title);
                 $model->delete();
                 return self::successJsonResponse();
