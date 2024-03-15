@@ -13,3 +13,5 @@ require_once "unit.php";
 require_once "agreement.php";
 require_once "complaint.php";
 require_once "enterprise.php";
+require_once "product.php";
+require_once "business.php";
