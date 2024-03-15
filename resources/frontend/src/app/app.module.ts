@@ -15,6 +15,8 @@ import {SystemModule} from "./modules/system/system.module";
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
+import {WechatModule} from "./modules/wechat/wechat.module";
+import {BusinessModule} from "./modules/business/business.module";
 registerLocaleData(zh);
 
 const antDesignIcons = AllIcons as {
@@ -24,7 +26,6 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
 
 @NgModule({
   declarations: [
-    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +36,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzIconModule,
     AuthModule,
     SystemModule,
+    BusinessModule,
+    WechatModule,
     NzIconModule.forRoot(icons)
   ],
   providers: [
