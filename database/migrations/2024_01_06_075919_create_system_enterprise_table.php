@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('system_corporations', function (Blueprint $table) {
+        Schema::create('system_enterprise', function (Blueprint $table) {
             $table->uuid('id')->unique()->primary();
             $table->string('name', 64)->nullable()->comment('企业名称');
             $table->string('main_projects', 64)->nullable()->comment('主营项目');
@@ -36,6 +36,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('system_corporations');
+        Schema::dropIfExists('system_enterprise');
     }
 };

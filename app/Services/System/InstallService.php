@@ -3,6 +3,7 @@
 namespace App\Services\System;
 
 use App\Models\System\SystemAdmin;
+use App\Models\System\SystemEnterprise;
 use App\Models\System\SystemNavigation;
 use App\Models\System\SystemRole;
 use App\Models\System\SystemRouter;
@@ -16,19 +17,32 @@ class InstallService
 
     public function setup()
     {
-        $this->admin = $this->addAdmin();
+        $enterprise = $this->addEnterprise();
+        $this->admin = $this->addAdmin($enterprise->id);
         $this->addRouter();
         $this->addMenu();
         $this->addRole();
     }
 
-    private function addAdmin()
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null|SystemEnterprise
+     */
+    private function addEnterprise()
+    {
+        (new SystemEnterprise)->save([
+            'name' => 'base platform',
+        ]);
+        return SystemEnterprise::query()->first();
+    }
+
+    private function addAdmin($enterprise_id)
     {
         $baseUser = [
             'username' => 'admin',
             'email' => 'admin@system.com',
             'password' => bcrypt('admin123456'),
             'user_type' => \App\Models\User::USER_TYPE_PLATFORM_SUPER_MANAGER,
+            'enterprise_id' => $enterprise_id
         ];
 
         $user = new \App\Models\User();
@@ -62,7 +76,8 @@ class InstallService
         }
     }
 
-    private function addRouter(){
+    private function addRouter()
+    {
         $data = BaseSystemRouterData::getData($this->admin->created_by);
 
         SystemRouter::query()->insert($data);
