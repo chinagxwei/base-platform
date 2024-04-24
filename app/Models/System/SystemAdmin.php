@@ -17,6 +17,7 @@ use Illuminate\Support\Collection;
 
 /**
  * @property string id
+ * @property string corporation_id
  * @property int role_id
  * @property string nickname
  * @property string mobile
@@ -35,7 +36,7 @@ class SystemAdmin extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'role_id', 'enterprise_id', 'nickname', 'mobile', 'remark', 'created_by', 'updated_by'
+        'role_id', 'corporation_id', 'nickname', 'mobile', 'remark', 'created_by', 'updated_by'
     ];
 
     protected $hidden = [
