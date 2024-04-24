@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Util;
+namespace App\Http\Controllers\Backend\System;
 
 use App\Http\Controllers\PlatformController;
-use App\Models\Util\Unit;
+use App\Models\System\SystemEnterprise;
 use Illuminate\Http\Request;
 
-class UnitController extends PlatformController
+class SystemEnterpriseController extends PlatformController
 {
-    protected $controller_event_text = "单位管理";
+    protected $controller_event_text = "企业管理";
 
-    public function index(Request $request)
-    {
-        $res = (new Unit())->searchBuild($request->all())->paginate();
+    public function index(Request $request){
+        $res = (new SystemEnterprise())->searchBuild($request->all())->paginate();
         return self::successJsonResponse($res);
     }
 
@@ -27,18 +26,17 @@ class UnitController extends PlatformController
 
             try {
                 $this->validate($request, [
-                    'title' => 'required',
-                    'label' => 'required',
+                    'name' => 'required|min:1',
                 ]);
 
                 if ($id > 0) {
-                    $model = Unit::findOneByID($id);
+                    $model = SystemEnterprise::findOneByID($id);
                 } else {
-                    $model = new Unit();
+                    $model = new SystemEnterprise();
                 }
 
                 if ($model->fill($request->all())->save()) {
-                    $this->saveEvent($model->title);
+                    $this->saveEvent($model->name);
                     return self::successJsonResponse();
                 }
             } catch (\Exception $e) {
@@ -48,20 +46,20 @@ class UnitController extends PlatformController
         return self::failJsonResponse();
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function view(Request $request)
-    {
-        if ($request->isMethod('POST') && $id = $request->input('id')) {
-            if ($model = Unit::findOneByID($id)) {
-                return self::successJsonResponse($model);
-            }
-        }
-
-        return self::failJsonResponse();
-    }
+//    /**
+//     * @param Request $request
+//     * @return \Illuminate\Http\JsonResponse
+//     */
+//    public function view(Request $request)
+//    {
+//        if ($request->isMethod('POST') && $id = $request->input('id')) {
+//            if ($model = Enterprise::findOneByID($id)) {
+//                return self::successJsonResponse($model);
+//            }
+//        }
+//
+//        return self::failJsonResponse();
+//    }
 
     /**
      * @param Request $request
@@ -70,8 +68,8 @@ class UnitController extends PlatformController
     public function delete(Request $request)
     {
         if ($id = $request->input('id')) {
-            if ($model = Unit::findOneByID($id)) {
-                $this->deleteEvent($model->title);
+            if ($model = SystemEnterprise::findOneByID($id)) {
+                $this->deleteEvent($model->name);
                 $model->delete();
                 return self::successJsonResponse();
             }
