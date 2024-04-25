@@ -17,7 +17,7 @@ use Illuminate\Support\Collection;
 
 /**
  * @property string id
- * @property string corporation_id
+ * @property string enterprise_id
  * @property int role_id
  * @property string nickname
  * @property string mobile

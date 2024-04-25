@@ -19,6 +19,11 @@ trait SystemAdminBuild{
         return $this;
     }
 
+    public function setEnterpriseId($enterprise_id){
+        $this->enterprise_id = $enterprise_id;
+        return $this;
+    }
+
     public static function generate($user_id)
     {
         $model = new static();

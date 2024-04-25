@@ -38,6 +38,7 @@ class SystemAdminController extends PlatformController
                     'username' => 'required|min:6',
                     'password' => 'required|min:6',
                     'role_id' => 'required',
+                    'enterprise_id'=> 'required',
                 ]);
                 $model = new User();
 
@@ -47,6 +48,7 @@ class SystemAdminController extends PlatformController
 
                 $admin->setMobile($param['mobile'])
                     ->setAdminRole($param['role_id'])
+                    ->setEnterpriseId($param['enterprise_id'])
                     ->setNickname($model->username);
 
                 if (!empty($param['remark'])) {
