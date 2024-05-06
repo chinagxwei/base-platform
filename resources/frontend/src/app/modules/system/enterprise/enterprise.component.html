@@ -1,0 +1,57 @@
+<div class="inner-content">
+  <button style="margin-bottom: 10px;" nz-button nzType="primary" (click)="add()">
+    <span>注册公司</span>
+  </button>
+  <nz-table [nzLoading]="loading"
+            [nzData]="listOfData"
+            [nzTotal]="currentData.total"
+            [nzPageIndex]="currentData.current_page"
+            [nzFrontPagination]="false"
+            [nzPageSize]="currentData.per_page"
+            (nzQueryParams)="onQueryParamsChange($event)">
+    <thead>
+    <tr>
+      <th>公司名称</th>
+      <th>公司英文名称</th>
+      <th>公司状态</th>
+      <th>创建时间</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of listOfData">
+      <td>{{ data.name}}</td>
+      <td>{{ data.name_en}}</td>
+      <td>{{ data.status }}</td>
+      <td>{{ data.created_at }}</td>
+      <td>
+        <a (click)="update(data)">编辑</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="onDelete(data.id)">删除</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="编辑角色" (nzOnCancel)="handleCancel()">
+    <div *nzModalContent>
+      <form nz-form [formGroup]="validateForm">
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">企业名称</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="请输入企业名称!">
+            <input nz-input formControlName="name" id="name" placeholder="企业名称"/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name_en">企业英文名称</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="请输入企业英文名称!">
+            <input nz-input formControlName="name_en" id="name_en" placeholder="企业英文名称"/>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+    <div *nzModalFooter>
+      <button nz-button nzType="default" (click)="handleCancel()">关闭</button>
+      <button nz-button nzType="primary" (click)="handleOk()">保存</button>
+    </div>
+  </nz-modal>
+</div>

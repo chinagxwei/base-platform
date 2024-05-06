@@ -10,5 +10,6 @@ Route::group([
 ], function ($router) {
     Route::any('enterprise/index', [SystemEnterpriseController::class, 'index']);
     Route::any('enterprise/save', [SystemEnterpriseController::class, 'save']);
+    Route::any('enterprise/view', [SystemEnterpriseController::class, 'view']);
     Route::any('enterprise/delete', [SystemEnterpriseController::class, 'delete']);
 });

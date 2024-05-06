@@ -250,3 +250,20 @@ export const ROUTER_SYSTEM_ITEM = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODUL
  */
 export const ROUTER_REGISTERED = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/router/registered-router`;
 
+
+/**
+ * 企业列表
+ */
+export const ENTERPRISE_ITEMS = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/enterprise/index`;
+/**
+ * 保存企业
+ */
+export const ENTERPRISE_SAVE = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/enterprise/save`;
+/**
+ * 企业详情
+ */
+export const ENTERPRISE_VIEW = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/enterprise/view`;
+/**
+ * 删除企业
+ */
+export const ENTERPRISE_DELETE = `${HOST}/api/${API_VERSION}/${SYSTEM_API_MODULE}/enterprise/delete`;

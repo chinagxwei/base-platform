@@ -29,27 +29,27 @@ class InstallService
      */
     private function addEnterprise()
     {
-        (new SystemEnterprise)->save([
-            'name' => 'base platform',
-        ]);
-        return SystemEnterprise::query()->first();
+        (new SystemEnterprise)->save();
+        $module = SystemEnterprise::query()->first();
+        $module->fill(['name' => 'base platform', 'name_en' => 'base platform'])->save();
+        return $module;
     }
 
     private function addAdmin($enterprise_id)
     {
+
         $baseUser = [
             'username' => 'admin',
             'email' => 'admin@system.com',
             'password' => bcrypt('admin123456'),
             'user_type' => \App\Models\User::USER_TYPE_PLATFORM_SUPER_MANAGER,
-            'enterprise_id' => $enterprise_id
         ];
 
         $user = new \App\Models\User();
 
         $user->fill($baseUser)->save();
 
-        return $user->admin()->save(new \App\Models\System\SystemAdmin(['nickname' => 'admin'])) ? $user->admin : null;
+        return $user->admin()->save(new \App\Models\System\SystemAdmin(['nickname' => 'admin', 'enterprise_id' => $enterprise_id])) ? $user->admin : null;
     }
 
     private function addMenu()

@@ -1,49 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Paginate} from "../../../models/server-response";
-import {Tag} from "../../../models/system";
+import {RegisterRouter, SystemEnterprise, SystemRouter} from "../../../models/system";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {NzMessageService} from "ng-zorro-antd/message";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {TagService} from "../../../services/system/tag.service";
 import {NzTableQueryParams} from "ng-zorro-antd/table";
 import {tap} from "rxjs";
+import {NzModalService} from "ng-zorro-antd/modal";
+import {EnterpriseService} from "../../../services/system/enterprise.service";
 import {ResponseCode} from "../../../utils/response-code";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
-  selector: 'app-tag',
-  templateUrl: './tag.component.html',
-  styleUrls: ['./tag.component.css']
+  selector: 'app-enterprise',
+  templateUrl: './enterprise.component.html',
+  styleUrls: ['./enterprise.component.css']
 })
-export class TagComponent implements OnInit {
+export class EnterpriseComponent implements OnInit {
 
-
-  currentData: Paginate<Tag> = new Paginate<Tag>();
+  currentData: Paginate<SystemEnterprise> = new Paginate<SystemEnterprise>();
 
   loading = true;
 
-  listOfData: Tag[] = [];
+  listOfData: SystemEnterprise[] = [];
+
+  isVisible = false;
 
   validateForm: FormGroup;
-
-  isVisible: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private message: NzMessageService,
     private modalService: NzModalService,
-    private componentService: TagService
+    private componentService: EnterpriseService
   ) {
     this.validateForm = this.formBuilder.group({});
   }
 
   ngOnInit(): void {
-    this.initForm();
-    this.getItems();
+
   }
 
-
-  onQueryParamsChange($event: NzTableQueryParams) {
-    this.getItems($event.pageIndex);
+  initForm() {
+    this.validateForm = this.formBuilder.group({
+      name: [null, [Validators.required]],
+      name_en:[null]
+    });
   }
 
   private getItems(page: number = 1) {
@@ -59,24 +59,20 @@ export class TagComponent implements OnInit {
       })
   }
 
-  initForm() {
-    this.validateForm = this.formBuilder.group({
-      title: [null, [Validators.required]],
-      day: [0],
-    });
+  add() {
+    this.initForm();
+    this.showModal();
   }
 
-  update(data: Tag) {
+  update(data: SystemEnterprise) {
     this.validateForm = this.formBuilder.group({
-      id: [data.id],
-      title: [data.title, [Validators.required]],
-      day: [data.day],
+      name: [data.name, [Validators.required]],
+      name_en:[data.name_en]
     });
-    this.showModal()
+    this.showModal();
   }
 
-  onDelete($event: Tag) {
-
+  onDelete(id: any) {
     this.modalService.confirm({
       nzTitle: '删除提示',
       nzContent: '<b style="color: red;">是否删除该项数据!</b>',
@@ -84,7 +80,7 @@ export class TagComponent implements OnInit {
       nzCancelText: '取消',
       nzOnOk: () => {
 
-        this.componentService.delete($event.id).subscribe(res => {
+        this.componentService.delete(id).subscribe(res => {
           this.getItems(this.currentData.current_page);
         });
       },
@@ -94,9 +90,8 @@ export class TagComponent implements OnInit {
     });
   }
 
-  add() {
-    this.validateForm.reset();
-    this.showModal();
+  onQueryParamsChange($event: NzTableQueryParams) {
+    this.getItems($event.pageIndex);
   }
 
   showModal(): void {
@@ -108,10 +103,6 @@ export class TagComponent implements OnInit {
   }
 
   handleOk() {
-    this.submitForm();
-  }
-
-  submitForm() {
     if (this.validateForm.valid) {
       this.componentService.save(this.validateForm.value).subscribe(res => {
         console.log(res);
@@ -134,6 +125,5 @@ export class TagComponent implements OnInit {
       });
     }
   }
-
 
 }

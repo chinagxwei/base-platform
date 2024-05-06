@@ -9,17 +9,6 @@ class BaseSystemNavigationData
     {
         $time = time();
         return [
-//            [
-//                'parent_id' => $menus_id,
-//                'navigation_name' => 'banner管理',
-//                'navigation_link' => '/system/banner',
-//                'navigation_sort' => 1,
-//                'menu_show' => 1,
-//                'icon' => 'line-chart',
-//                'created_by' => $created_by,
-//                'created_at' => $time,
-//                'updated_at' => $time
-//            ],
             [
                 'parent_id' => $menus_id,
                 'navigation_name' => '协议管理',
@@ -80,29 +69,6 @@ class BaseSystemNavigationData
                 'navigation_name' => '图片管理',
                 'navigation_link' => '/system/images',
                 'navigation_sort' => 4,
-                'menu_show' => 1,
-                'icon' => 'line-chart',
-                'created_by' => $created_by,
-                'created_at' => $time,
-                'updated_at' => $time
-            ],
-            [
-                'parent_id' => $menus_id,
-                'navigation_name' => '标签管理',
-                'navigation_link' => '/system/tag',
-                'navigation_sort' => 5,
-                'menu_show' => 1,
-                'icon' => 'line-chart',
-                'created_by' => $created_by,
-                'created_at' => $time,
-                'updated_at' => $time
-            ],
-
-            [
-                'parent_id' => $menus_id,
-                'navigation_name' => '单位管理',
-                'navigation_link' => '/system/unit',
-                'navigation_sort' => 6,
                 'menu_show' => 1,
                 'icon' => 'line-chart',
                 'created_by' => $created_by,
@@ -241,28 +207,17 @@ class BaseSystemNavigationData
                 'created_at' => $time,
                 'updated_at' => $time
             ],
-//            [
-//                'parent_id' => $menus_id,
-//                'navigation_name' => 'app错误日志管理',
-//                'navigation_link' => '/system/app-bug-log',
-//                'navigation_sort' => 12,
-//                'menu_show' => 1,
-//                'icon' => 'line-chart',
-//                'created_by' => $created_by,
-//                'created_at' => $time,
-//                'updated_at' => $time
-//            ],
-//            [
-//                'parent_id' => $menus_id,
-//                'navigation_name' => 'app发布管理',
-//                'navigation_link' => '/system/app-publish-log',
-//                'navigation_sort' => 13,
-//                'menu_show' => 1,
-//                'icon' => 'line-chart',
-//                'created_by' => $created_by,
-//                'created_at' => $time,
-//                'updated_at' => $time
-//            ],
+            [
+                'parent_id' => $menus_id,
+                'navigation_name' => '企业管理',
+                'navigation_link' => '/system/enterprise',
+                'navigation_sort' => 13,
+                'menu_show' => 1,
+                'icon' => 'line-chart',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
         ];
     }
 

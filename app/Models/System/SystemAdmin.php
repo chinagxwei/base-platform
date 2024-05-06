@@ -36,7 +36,7 @@ class SystemAdmin extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'role_id', 'corporation_id', 'nickname', 'mobile', 'remark', 'created_by', 'updated_by'
+        'role_id', 'enterprise_id', 'nickname', 'mobile', 'remark', 'created_by', 'updated_by'
     ];
 
     protected $hidden = [

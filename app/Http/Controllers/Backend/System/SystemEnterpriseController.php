@@ -46,20 +46,20 @@ class SystemEnterpriseController extends PlatformController
         return self::failJsonResponse();
     }
 
-//    /**
-//     * @param Request $request
-//     * @return \Illuminate\Http\JsonResponse
-//     */
-//    public function view(Request $request)
-//    {
-//        if ($request->isMethod('POST') && $id = $request->input('id')) {
-//            if ($model = Enterprise::findOneByID($id)) {
-//                return self::successJsonResponse($model);
-//            }
-//        }
-//
-//        return self::failJsonResponse();
-//    }
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function view(Request $request)
+    {
+        if ($request->isMethod('POST') && $id = $request->input('id')) {
+            if ($model = SystemEnterprise::findOneByID($id)) {
+                return self::successJsonResponse($model);
+            }
+        }
+
+        return self::failJsonResponse();
+    }
 
     /**
      * @param Request $request

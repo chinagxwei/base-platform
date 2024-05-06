@@ -2,8 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LogComponent} from './log/log.component';
 import {NzTableModule} from "ng-zorro-antd/table";
-import {UnitComponent} from './unit/unit.component';
-import {UnitFormItemComponent} from './unit/unit-form-item/unit-form-item.component';
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzSelectModule} from "ng-zorro-antd/select";
 import {NzIconModule} from "ng-zorro-antd/icon";
@@ -27,7 +25,6 @@ import {ComplaintComponent} from './complaint/complaint.component';
 import {AgreementComponent} from './agreement/agreement.component';
 import {EditorForAngularModule} from "wangeditor-for-angular";
 import {NzSwitchModule} from "ng-zorro-antd/switch";
-import {TagComponent} from './tag/tag.component';
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzMenuModule} from "ng-zorro-antd/menu";
 import {RouterLinkActive, RouterOutlet} from "@angular/router";
@@ -39,14 +36,14 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import { ConfigRouterComponent } from './role/config-router/config-router.component';
 import { ConfigNavigationComponent } from './role/config-navigation/config-navigation.component';
 import {NzTreeModule} from "ng-zorro-antd/tree";
+import { EnterpriseComponent } from './enterprise/enterprise.component';
+import {NzStepsModule} from "ng-zorro-antd/steps";
 
 
 @NgModule({
   declarations: [
     LayoutComponent,
     LogComponent,
-    UnitComponent,
-    UnitFormItemComponent,
     RouterComponent,
     RoleComponent,
     NavigationComponent,
@@ -55,38 +52,39 @@ import {NzTreeModule} from "ng-zorro-antd/tree";
     ConfigComponent,
     ComplaintComponent,
     AgreementComponent,
-    TagComponent,
     ManagerComponent,
     ManagerMessageComponent,
     MessageComponent,
     ConfigRouterComponent,
-    ConfigNavigationComponent
+    ConfigNavigationComponent,
+    EnterpriseComponent
   ],
-    imports: [
-        CommonModule,
-        SystemRoutingModule,
-        NzTableModule,
-        NzFormModule,
-        NzSelectModule,
-        NzIconModule,
-        FormsModule,
-        NzButtonModule,
-        NzDividerModule,
-        NzModalModule,
-        NzInputModule,
-        ReactiveFormsModule,
-        NzInputNumberModule,
-        NzTransferModule,
-        DragDropModule,
-        NzTagModule,
-        EditorForAngularModule,
-        NzSwitchModule,
-        NzLayoutModule,
-        NzMenuModule,
-        RouterLinkActive,
-        RouterOutlet,
-        NzTreeModule
-    ],
+  imports: [
+    CommonModule,
+    SystemRoutingModule,
+    NzTableModule,
+    NzFormModule,
+    NzSelectModule,
+    NzIconModule,
+    FormsModule,
+    NzButtonModule,
+    NzDividerModule,
+    NzModalModule,
+    NzInputModule,
+    ReactiveFormsModule,
+    NzInputNumberModule,
+    NzTransferModule,
+    DragDropModule,
+    NzTagModule,
+    EditorForAngularModule,
+    NzSwitchModule,
+    NzLayoutModule,
+    NzMenuModule,
+    RouterLinkActive,
+    RouterOutlet,
+    NzTreeModule,
+    NzStepsModule
+  ],
   providers: [NzModalService, NzMessageService]
 })
 export class SystemModule {

@@ -10,11 +10,10 @@ import {ConfigComponent} from "./config/config.component";
 import {LogComponent} from "./log/log.component";
 import {AgreementComponent} from "./agreement/agreement.component";
 import {ComplaintComponent} from "./complaint/complaint.component";
-import {UnitComponent} from "./unit/unit.component";
-import {TagComponent} from "./tag/tag.component";
 import {ManagerComponent} from "./manager/manager.component";
 import {ManagerMessageComponent} from "./manager/manager-message/manager-message.component";
 import {MessageComponent} from "./message/message.component";
+import {EnterpriseComponent} from "./enterprise/enterprise.component";
 
 const platformRoutes: Routes = [
   {
@@ -33,8 +32,7 @@ const platformRoutes: Routes = [
       {path: 'action-log', component: LogComponent},
       {path: 'agreement', component: AgreementComponent},
       {path: 'complaint', component: ComplaintComponent},
-      {path: 'tag', component: TagComponent},
-      {path: 'unit', component: UnitComponent},
+      {path: 'enterprise', component: EnterpriseComponent},
     ]
   },
 ];
