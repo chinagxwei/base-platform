@@ -13,7 +13,7 @@
     <tr>
       <th>公司名称</th>
       <th>公司英文名称</th>
-      <th>公司状态</th>
+<!--      <th>公司状态</th>-->
       <th>创建时间</th>
       <th>操作</th>
     </tr>
@@ -22,7 +22,7 @@
     <tr *ngFor="let data of listOfData">
       <td>{{ data.name}}</td>
       <td>{{ data.name_en}}</td>
-      <td>{{ data.status }}</td>
+<!--      <td>{{ data.status }}</td>-->
       <td>{{ data.created_at }}</td>
       <td>
         <a (click)="update(data)">编辑</a>
