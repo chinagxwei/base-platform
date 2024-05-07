@@ -47,6 +47,9 @@ export class LoginComponent implements OnInit {
             if (!res.type) {
               this.nzMessageService.error(res.msg)
             }
+          },error => {
+            this.isLoading = false;
+            console.error(error)
           });
       }
     } else {
