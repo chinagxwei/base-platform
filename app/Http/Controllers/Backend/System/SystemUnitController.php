@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Backend\System;
 
 use App\Http\Controllers\PlatformController;
-use App\Models\System\SystemEnterprise;
+use App\Models\System\SystemUnit;
 use Illuminate\Http\Request;
 
-class SystemEnterpriseController extends PlatformController
+class SystemUnitController extends PlatformController
 {
-    protected $controller_event_text = "企业管理";
+    protected $controller_event_text = "单位管理";
 
-    public function index(Request $request){
-        $res = (new SystemEnterprise())->searchBuild($request->all())->paginate();
+    public function index(Request $request)
+    {
+        $res = (new SystemUnit())->searchBuild($request->all())->paginate();
         return self::successJsonResponse($res);
     }
 
@@ -26,17 +27,18 @@ class SystemEnterpriseController extends PlatformController
 
             try {
                 $this->validate($request, [
-                    'name' => 'required|min:1',
+                    'title' => 'required',
+                    'label' => 'required',
                 ]);
 
                 if ($id > 0) {
-                    $model = SystemEnterprise::findOneByID($id);
+                    $model = SystemUnit::findOneByID($id);
                 } else {
-                    $model = new SystemEnterprise();
+                    $model = new SystemUnit();
                 }
 
                 if ($model->fill($request->all())->save()) {
-                    $this->saveEvent($model->name);
+                    $this->saveEvent($model->title);
                     return self::successJsonResponse();
                 }
             } catch (\Exception $e) {
@@ -53,7 +55,7 @@ class SystemEnterpriseController extends PlatformController
     public function view(Request $request)
     {
         if ($request->isMethod('POST') && $id = $request->input('id')) {
-            if ($model = SystemEnterprise::findOneByID($id)) {
+            if ($model = SystemUnit::findOneByID($id)) {
                 return self::successJsonResponse($model);
             }
         }
@@ -68,8 +70,8 @@ class SystemEnterpriseController extends PlatformController
     public function delete(Request $request)
     {
         if ($id = $request->input('id')) {
-            if ($model = SystemEnterprise::findOneByID($id)) {
-                $this->deleteEvent($model->name);
+            if ($model = SystemUnit::findOneByID($id)) {
+                $this->deleteEvent($model->title);
                 $model->delete();
                 return self::successJsonResponse();
             }

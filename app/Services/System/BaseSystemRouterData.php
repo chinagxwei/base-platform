@@ -11,6 +11,8 @@ class BaseSystemRouterData
             self::getAgreement($created_by, $time),
             self::getComplaint($created_by, $time),
             self::getImage($created_by, $time),
+            self::getTag($created_by, $time),
+            self::getUnit($created_by, $time),
             self::getEnterprise($created_by, $time),
             self::getConfig($created_by, $time),
             self::getNavigation($created_by, $time),
@@ -125,6 +127,74 @@ class BaseSystemRouterData
             [
                 'router_name' => '删除图片',
                 'router' => '/api/v1/system/images/delete',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ]
+        ];
+    }
+
+    private static function getTag($created_by, $time)
+    {
+        return [
+            [
+                'router_name' => '标签列表',
+                'router' => '/api/v1/system/tag/index',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'router_name' => '标签保存',
+                'router' => '/api/v1/system/tag/save',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'router_name' => '标签详情',
+                'router' => '/api/v1/system/tag/view',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'router_name' => '删除标签',
+                'router' => '/api/v1/system/tag/delete',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ]
+        ];
+    }
+
+    private static function getUnit($created_by, $time)
+    {
+        return [
+            [
+                'router_name' => '单位列表',
+                'router' => '/api/v1/system/unit/index',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'router_name' => '单位保存',
+                'router' => '/api/v1/system/unit/save',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'router_name' => '单位详情',
+                'router' => '/api/v1/system/unit/view',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'router_name' => '删除单位',
+                'router' => '/api/v1/system/unit/delete',
                 'created_by' => $created_by,
                 'created_at' => $time,
                 'updated_at' => $time

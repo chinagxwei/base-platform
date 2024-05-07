@@ -16,7 +16,10 @@ export class AuthService {
 
   public user?: User;
   public redirectUrl: string = "";
-  public defaultUrl = '/system'
+
+  public systemHome = '/system'
+
+  public enterpriseHome = '/enterprise';
 
   constructor(private http: HttpClient, private router: Router) {
     const dataStr = window.localStorage.getItem('backend_authorized');
@@ -66,11 +69,12 @@ export class AuthService {
   }
 
   public toHome() {
-    const redirect = this.redirectUrl ? this.router.parseUrl(this.redirectUrl) : this.defaultUrl;
+    const redirect = this.redirectUrl ? this.router.parseUrl(this.redirectUrl) : this.systemHome;
     const navigationExtras: NavigationExtras = {
       queryParamsHandling: 'preserve',
       preserveFragment: true
     };
     this.router.navigateByUrl(redirect, navigationExtras);
   }
+
 }

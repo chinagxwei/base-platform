@@ -12,6 +12,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/system/system.module').then(m => m.SystemModule),
     canActivate: [appGuard]
   },
+  {
+    path: 'enterprise',
+    loadChildren: () => import('./modules/enterprise/enterprise.module').then(m => m.EnterpriseModule),
+    canActivate: [appGuard]
+  },
   {path: '**', redirectTo: '/system', pathMatch: 'full'},
 ];
 

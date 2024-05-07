@@ -77,6 +77,29 @@ class BaseSystemNavigationData
             ],
             [
                 'parent_id' => $menus_id,
+                'navigation_name' => '标签管理',
+                'navigation_link' => '/system/tag',
+                'navigation_sort' => 5,
+                'menu_show' => 1,
+                'icon' => 'line-chart',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+
+            [
+                'parent_id' => $menus_id,
+                'navigation_name' => '单位管理',
+                'navigation_link' => '/system/unit',
+                'navigation_sort' => 6,
+                'menu_show' => 1,
+                'icon' => 'line-chart',
+                'created_by' => $created_by,
+                'created_at' => $time,
+                'updated_at' => $time
+            ],
+            [
+                'parent_id' => $menus_id,
                 'navigation_name' => '系统配置管理',
                 'navigation_link' => '/system/config',
                 'navigation_sort' => 7,

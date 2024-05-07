@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Backend\System;
 
 use App\Http\Controllers\PlatformController;
-use App\Models\System\SystemEnterprise;
+use App\Models\System\SystemTag;
 use Illuminate\Http\Request;
 
-class SystemEnterpriseController extends PlatformController
+class SystemTagController extends PlatformController
 {
-    protected $controller_event_text = "企业管理";
+    protected $controller_event_text = "标签管理";
 
     public function index(Request $request){
-        $res = (new SystemEnterprise())->searchBuild($request->all())->paginate();
+        $res = (new SystemTag())->searchBuild($request->all())->paginate();
         return self::successJsonResponse($res);
     }
 
@@ -26,17 +26,18 @@ class SystemEnterpriseController extends PlatformController
 
             try {
                 $this->validate($request, [
-                    'name' => 'required|min:1',
+                    'title' => 'required|min:1',
+                    'day' => 'numeric',
                 ]);
 
                 if ($id > 0) {
-                    $model = SystemEnterprise::findOneByID($id);
+                    $model = SystemTag::findOneByID($id);
                 } else {
-                    $model = new SystemEnterprise();
+                    $model = new SystemTag();
                 }
 
                 if ($model->fill($request->all())->save()) {
-                    $this->saveEvent($model->name);
+                    $this->saveEvent($model->title);
                     return self::successJsonResponse();
                 }
             } catch (\Exception $e) {
@@ -53,7 +54,7 @@ class SystemEnterpriseController extends PlatformController
     public function view(Request $request)
     {
         if ($request->isMethod('POST') && $id = $request->input('id')) {
-            if ($model = SystemEnterprise::findOneByID($id)) {
+            if ($model = SystemTag::findOneByID($id)) {
                 return self::successJsonResponse($model);
             }
         }
@@ -68,8 +69,8 @@ class SystemEnterpriseController extends PlatformController
     public function delete(Request $request)
     {
         if ($id = $request->input('id')) {
-            if ($model = SystemEnterprise::findOneByID($id)) {
-                $this->deleteEvent($model->name);
+            if ($model = SystemTag::findOneByID($id)) {
+                $this->deleteEvent($model->title);
                 $model->delete();
                 return self::successJsonResponse();
             }

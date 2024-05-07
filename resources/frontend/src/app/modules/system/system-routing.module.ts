@@ -1,6 +1,5 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {LayoutComponent} from "./layout/layout.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {RouterComponent} from "./router/router.component";
 import {RoleComponent} from "./role/role.component";
@@ -14,8 +13,11 @@ import {ManagerComponent} from "./manager/manager.component";
 import {ManagerMessageComponent} from "./manager/manager-message/manager-message.component";
 import {MessageComponent} from "./message/message.component";
 import {EnterpriseComponent} from "./enterprise/enterprise.component";
+import {TagComponent} from "./tag/tag.component";
+import {UnitComponent} from "./unit/unit.component";
+import {LayoutComponent} from "./layout/layout.component";
 
-const platformRoutes: Routes = [
+const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
@@ -32,6 +34,8 @@ const platformRoutes: Routes = [
       {path: 'action-log', component: LogComponent},
       {path: 'agreement', component: AgreementComponent},
       {path: 'complaint', component: ComplaintComponent},
+      {path: 'tag', component: TagComponent},
+      {path: 'unit', component: UnitComponent},
       {path: 'enterprise', component: EnterpriseComponent},
     ]
   },
@@ -39,7 +43,7 @@ const platformRoutes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(platformRoutes)
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

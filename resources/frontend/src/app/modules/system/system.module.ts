@@ -20,7 +20,7 @@ import {NzTagModule} from "ng-zorro-antd/tag";
 import {ImageComponent} from './image/image.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ConfigComponent} from './config/config.component';
-import {LayoutComponent} from './layout/layout.component';
+
 import {ComplaintComponent} from './complaint/complaint.component';
 import {AgreementComponent} from './agreement/agreement.component';
 import {EditorForAngularModule} from "wangeditor-for-angular";
@@ -38,7 +38,10 @@ import { ConfigNavigationComponent } from './role/config-navigation/config-navig
 import {NzTreeModule} from "ng-zorro-antd/tree";
 import { EnterpriseComponent } from './enterprise/enterprise.component';
 import {NzStepsModule} from "ng-zorro-antd/steps";
-
+import {TagComponent} from "./tag/tag.component";
+import {UnitComponent} from "./unit/unit.component";
+import {UnitFormItemComponent} from "./unit/unit-form-item/unit-form-item.component";
+import {LayoutComponent} from "./layout/layout.component";
 
 @NgModule({
   declarations: [
@@ -57,6 +60,9 @@ import {NzStepsModule} from "ng-zorro-antd/steps";
     MessageComponent,
     ConfigRouterComponent,
     ConfigNavigationComponent,
+    TagComponent,
+    UnitComponent,
+    UnitFormItemComponent,
     EnterpriseComponent
   ],
   imports: [

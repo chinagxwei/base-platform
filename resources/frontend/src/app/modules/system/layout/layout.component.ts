@@ -6,7 +6,6 @@ import {NzMessageService} from "ng-zorro-antd/message";
 import {Router} from "@angular/router";
 import {PlatformLocation} from "@angular/common";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {UserService} from "../../../services/system/user.service";
 import {ManagerService} from "../../../services/system/manager.service";
 
 @Component({

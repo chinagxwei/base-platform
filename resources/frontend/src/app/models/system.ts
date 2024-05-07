@@ -78,6 +78,24 @@ export class SystemImage {
   created_at?: number = 0;
 }
 
+export class SystemTag {
+  id?: number;
+  title: string = "";
+  day?: number = 0;
+  created_at?: number = 0;
+}
+
+export class SystemUnit {
+  id?: number;
+  title: string = "";
+  description?: string = "";
+  label?: string = "";
+  symbol?: string = "";
+  finance: number = 0;
+  created_at?: number = 0;
+  balance?: { total_balance: number }
+}
+
 export class SystemEnterprise {
   id?: string = "";
   name: string = "";
