@@ -102,4 +102,8 @@ class SystemRole extends Model
         $model->created_by = $created_by;
         return $model->save() ? $model : null;
     }
+
+    public static function findByHash($hash){
+        return self::query()->where('hash', $hash)->first();
+    }
 }
