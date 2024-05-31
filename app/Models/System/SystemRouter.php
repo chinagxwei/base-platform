@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
 
 /**
  * @property int id
+ * @property string hash
  * @property string router_name
  * @property string router
  * @property int created_by
@@ -43,7 +44,7 @@ class SystemRouter extends Model
 
 
     protected $fillable = [
-        'router_name', 'router', 'created_by', 'updated_by'
+        'router_name', 'hash', 'router', 'created_by', 'updated_by'
     ];
 
     protected $hidden = [
@@ -53,7 +54,8 @@ class SystemRouter extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|static[]
      */
-    public static function getAll(){
+    public static function getAll()
+    {
         return self::query()->select(['router'])->get();
     }
 

@@ -15,6 +15,7 @@ use Illuminate\Support\Collection;
 
 /**
  * @property int id
+ * @property string hash
  * @property string role_name
  * @property int created_by
  * @property Carbon created_at
@@ -44,7 +45,7 @@ class SystemRole extends Model
 
 
     protected $fillable = [
-        'role_name', 'created_by', 'updated_by'
+        'role_name', 'hash', 'created_by', 'updated_by'
     ];
 
     protected $hidden = [
@@ -97,6 +98,7 @@ class SystemRole extends Model
     {
         $model = new static();
         $model->role_name = $role_name;
+        $model->hash = md5($role_name);
         $model->created_by = $created_by;
         return $model->save() ? $model : null;
     }

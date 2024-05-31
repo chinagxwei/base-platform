@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
 
 /**
  * @property int id
+ * @property string hash
  * @property int parent_id
  * @property string navigation_name
  * @property string navigation_link
@@ -51,7 +52,7 @@ class SystemNavigation extends Model
     protected $dateFormat = 'U';
 
     protected $fillable = [
-        'parent_id', 'navigation_name', 'navigation_link',
+        'parent_id', 'navigation_name', 'navigation_link', 'hash',
         'navigation_sort', 'menu_show', 'icon', 'created_by', 'updated_by'
     ];
 
