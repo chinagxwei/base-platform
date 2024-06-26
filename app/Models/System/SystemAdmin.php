@@ -3,9 +3,9 @@
 namespace App\Models\System;
 
 use App\Models\Build\SystemBuild\SystemAdminBuild;
-use App\Models\Trait\AdminRoleRelation;
 use App\Models\Trait\CreatedRelation;
 use App\Models\Trait\SearchData;
+use App\Models\Trait\SystemRoleRelation;
 use App\Models\Trait\UpdatedRelation;
 use App\Models\User;
 use Emadadly\LaravelUuid\Uuids;
@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection;
 
 /**
  * @property string id
@@ -28,7 +27,7 @@ use Illuminate\Support\Collection;
  */
 class SystemAdmin extends Model
 {
-    use HasFactory, SoftDeletes, Uuids, SystemAdminBuild, AdminRoleRelation, SearchData, CreatedRelation, UpdatedRelation;
+    use HasFactory, SoftDeletes, Uuids, SystemAdminBuild, SystemRoleRelation, SearchData, CreatedRelation, UpdatedRelation;
 
     protected $table = 'system_admins';
 

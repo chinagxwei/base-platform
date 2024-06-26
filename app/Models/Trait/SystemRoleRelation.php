@@ -2,13 +2,14 @@
 
 namespace App\Models\Trait;
 
-use App\Models\Admin\AdminRole;
+
+use App\Models\System\SystemRole;
 
 /**
  * @property int role_id
- * @property AdminRole adminRole
+ * @property SystemRole systemRole
  */
-trait AdminRoleRelation
+trait SystemRoleRelation
 {
     public function setAdminRole($role_id){
         $this->role_id = $role_id;
@@ -18,8 +19,8 @@ trait AdminRoleRelation
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function adminRole()
+    public function systemRole()
     {
-        return $this->hasOne(AdminRole::class, 'id', 'role_id');
+        return $this->hasOne(SystemRole::class, 'id', 'role_id');
     }
 }

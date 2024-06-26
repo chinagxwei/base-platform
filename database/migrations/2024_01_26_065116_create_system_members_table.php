@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('system_admins', function (Blueprint $table) {
+        Schema::create('system_members', function (Blueprint $table) {
             $table->uuid('id')->unique()->primary();
+            $table->uuid('enterprise_id')->index()->nullable()->comment('企业ID');
             $table->integer('role_id')->index()->nullable()->comment('角色ID');
+            $table->uuid('wallet_id')->index()->nullable()->comment('企业ID');
             $table->string('nickname',128)->nullable()->comment('昵称');
             $table->string('mobile',24)->nullable()->comment('手机号码');
             $table->string('remark',128)->nullable()->comment('备注');
@@ -24,7 +26,7 @@ return new class extends Migration
             $table->integer('created_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('updated_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('deleted_at')->unsigned()->nullable();
-            $table->comment('平台管理员表');
+            $table->comment('会员表');
         });
     }
 
@@ -35,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('system_admins');
+        Schema::dropIfExists('system_members');
     }
 };

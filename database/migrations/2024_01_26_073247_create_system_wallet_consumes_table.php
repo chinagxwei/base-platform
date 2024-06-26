@@ -13,18 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('system_admins', function (Blueprint $table) {
-            $table->uuid('id')->unique()->primary();
-            $table->integer('role_id')->index()->nullable()->comment('角色ID');
-            $table->string('nickname',128)->nullable()->comment('昵称');
-            $table->string('mobile',24)->nullable()->comment('手机号码');
-            $table->string('remark',128)->nullable()->comment('备注');
+        Schema::create('system_wallet_consumes', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->string('order_sn',64)->index()->nullable()->comment('订单编号');
+            $table->uuid('wallet_id')->index()->nullable()->comment('钱包ID');
+            $table->uuid('wallet_fund_id')->index()->nullable()->comment('资金ID');
+            $table->bigInteger('amount')->unsigned()->nullable()->comment('金额（单位：分）');
+            $table->tinyInteger('status')->unsigned()->default(1)->nullable()->comment('状态 0取消 1启用');
+            $table->string('sign',64)->nullable();
             $table->integer('created_at')->unsigned()->nullable();
             $table->integer('updated_at')->unsigned()->nullable();
             $table->integer('created_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('updated_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('deleted_at')->unsigned()->nullable();
-            $table->comment('平台管理员表');
+            $table->comment('钱包消费表');
         });
     }
 
@@ -35,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('system_admins');
+        Schema::dropIfExists('system_wallet_consumes');
     }
 };

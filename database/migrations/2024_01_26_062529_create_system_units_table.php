@@ -13,18 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('system_admins', function (Blueprint $table) {
-            $table->uuid('id')->unique()->primary();
-            $table->integer('role_id')->index()->nullable()->comment('角色ID');
-            $table->string('nickname',128)->nullable()->comment('昵称');
-            $table->string('mobile',24)->nullable()->comment('手机号码');
-            $table->string('remark',128)->nullable()->comment('备注');
+        Schema::create('system_units', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->string('title',64)->nullable()->comment('标题');
+            $table->string('description',128)->nullable()->comment('描述');
+            $table->string('label',64)->nullable()->comment('中文标签');
+            $table->string('symbol',32)->nullable()->comment('单位符号');
+            $table->tinyInteger('finance')->unsigned()->default(0)->nullable()->comment('金融单位 0不是 1是');
             $table->integer('created_at')->unsigned()->nullable();
             $table->integer('updated_at')->unsigned()->nullable();
             $table->integer('created_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('updated_by')->index()->unsigned()->nullable()->comment('用户ID');
             $table->integer('deleted_at')->unsigned()->nullable();
-            $table->comment('平台管理员表');
+            $table->comment('单位表');
         });
     }
 
@@ -35,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('system_admins');
+        Schema::dropIfExists('system_units');
     }
 };
