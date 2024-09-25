@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('coupons', function (Blueprint $table) {
-            $table->uuid('id')->unique()->primary();
-            $table->string('title', 128)->index()->nullable()->comment('标题');
+            $table->uuid('id')->primary();
+            $table->string('title', 128)->nullable()->comment('标题');
             $table->integer('created_at')->unsigned()->nullable();
             $table->integer('updated_at')->unsigned()->nullable();
             $table->integer('created_by')->index()->unsigned()->nullable()->comment('用户ID');

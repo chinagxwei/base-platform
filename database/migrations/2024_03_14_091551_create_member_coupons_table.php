@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('member_coupons', function (Blueprint $table) {
             $table->uuid('member_id');
-            $table->uuid('coupon_id')->unsigned();
+            $table->uuid('coupon_id');
             $table->integer('started_at')->unsigned()->nullable()->comment('开始时间');
             $table->integer('ended_at')->unsigned()->nullable()->comment('结束时间');
             $table->text('remark')->nullable()->comment('备注');
@@ -24,7 +24,7 @@ return new class extends Migration
         });
     }
 
-    /**
+    /**`
      * Reverse the migrations.
      *
      * @return void
